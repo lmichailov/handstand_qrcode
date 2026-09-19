@@ -1,4 +1,3 @@
-@'
 <!DOCTYPE html>
 <html lang="de">
 <head>
@@ -51,8 +50,9 @@
     }
   </style>
 
-  <!-- GoatCounter Analytics Script -->
+  <!-- GoatCounter Skript (no_onload verhindert doppelten automatischen Aufruf) -->
   <script data-goatcounter="https://handstand-dortmund.goatcounter.com/count"
+          data-goatcounter-settings='{"no_onload": true}'
           async src="//gc.zgo.at/count.js"></script>
 </head>
 <body>
@@ -73,34 +73,44 @@
   </div>
 
   <script>
-    // Klick auf "Kurs buchen" nur 1x pro Person zählen
-    document.getElementById('btn-booking').addEventListener('click', function() {
-      if (!localStorage.getItem('clicked_booking')) {
-        localStorage.setItem('clicked_booking', 'true');
-        if (window.goatcounter && window.goatcounter.count) {
-          window.goatcounter.count({
-            path: 'klick-kurs-buchen',
-            title: 'Button: Kurs buchen',
-            event: true
-          });
-        }
+    window.addEventListener('load', function() {
+      // 1. Eintrag: QR-Code / Seitenaufruf
+      if (window.goatcounter && window.goatcounter.count) {
+        window.goatcounter.count({
+          path: '/handstand_qrcode',
+          title: 'QR-Code Aufruf',
+          event: false
+        });
       }
-    });
 
-    // Klick auf "Instagram" nur 1x pro Person zählen
-    document.getElementById('btn-insta').addEventListener('click', function() {
-      if (!localStorage.getItem('clicked_insta')) {
-        localStorage.setItem('clicked_insta', 'true');
-        if (window.goatcounter && window.goatcounter.count) {
-          window.goatcounter.count({
-            path: 'klick-instagram',
-            title: 'Button: Instagram Profil',
-            event: true
-          });
+      // 2. Eintrag: Klick auf "Kurs buchen" (nur 1x pro Person)
+      document.getElementById('btn-booking').addEventListener('click', function() {
+        if (!localStorage.getItem('counted_booking')) {
+          localStorage.setItem('counted_booking', 'true');
+          if (window.goatcounter && window.goatcounter.count) {
+            window.goatcounter.count({
+              path: '/klick-kurs-buchen',
+              title: 'Klick: Kurs buchen',
+              event: false
+            });
+          }
         }
-      }
+      });
+
+      // 3. Eintrag: Klick auf "Instagram" (nur 1x pro Person)
+      document.getElementById('btn-insta').addEventListener('click', function() {
+        if (!localStorage.getItem('counted_insta')) {
+          localStorage.setItem('counted_insta', 'true');
+          if (window.goatcounter && window.goatcounter.count) {
+            window.goatcounter.count({
+              path: '/klick-instagram',
+              title: 'Klick: Instagram Profil',
+              event: false
+            });
+          }
+        }
+      });
     });
   </script>
 </body>
 </html>
-'@ | Set-Content -Encoding UTF8 index.html
