@@ -44,6 +44,10 @@
       background: #234d31;
       color: white;
     }
+    .btn-secondary {
+      background: #3b6e4e;
+      color: white;
+    }
     .btn-insta {
       background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
       color: white;
@@ -57,15 +61,24 @@
 </head>
 <body>
   <div class="card">
-    <h1>Handstand Schnupperkurs</h1>
-    <p>Sonntag, 4. Oktober • Yoga Vidya Dortmund<br>Sichere dir deinen Platz oder folge mir auf Instagram!</p>
+    <h1>Handstand Schnupperkurs & Coaching</h1>
+    <p>Yoga Vidya Dortmund<br>Sichere dir deinen Platz oder folge mir auf Instagram!</p>
     
+    <!-- 1. Kurs: Schnupperkurs für 10 € -->
     <a href="https://backoffice.bsport.io/one-click-booking/3795/43171505?" 
        id="btn-booking"
        class="btn btn-booking" 
        target="_blank" 
-       rel="noopener noreferrer">🎟️ Jetzt Kurs buchen (10 €)</a>
+       rel="noopener noreferrer">🎟️ Handstand Schnupperkurs (10 €)</a>
 
+    <!-- 2. Kurs: 5 Wochen Kurs -->
+    <a href="https://backoffice.bsport.io/pass-express-checkout/3795/800182/paymentPack" 
+       id="btn-5weeks"
+       class="btn btn-secondary" 
+       target="_blank" 
+       rel="noopener noreferrer">🚀 Handstand 5 Wochen Kurs</a>
+
+    <!-- 3. Instagram -->
     <a href="https://instagram.com/lilia.milo" 
        id="btn-insta"
        class="btn btn-insta" 
@@ -83,21 +96,35 @@
         });
       }
 
-      // 2. Eintrag: Klick auf "Kurs buchen" (nur 1x pro Person)
+      // 2. Eintrag: Klick auf "Schnupperkurs buchen" (nur 1x pro Person)
       document.getElementById('btn-booking').addEventListener('click', function() {
         if (!localStorage.getItem('counted_booking')) {
           localStorage.setItem('counted_booking', 'true');
           if (window.goatcounter && window.goatcounter.count) {
             window.goatcounter.count({
               path: '/klick-kurs-buchen',
-              title: 'Klick: Kurs buchen',
+              title: 'Klick: Schnupperkurs buchen',
               event: false
             });
           }
         }
       });
 
-      // 3. Eintrag: Klick auf "Instagram" (nur 1x pro Person)
+      // 3. Eintrag: Klick auf "5 Wochen Kurs" (nur 1x pro Person)
+      document.getElementById('btn-5weeks').addEventListener('click', function() {
+        if (!localStorage.getItem('counted_5weeks')) {
+          localStorage.setItem('counted_5weeks', 'true');
+          if (window.goatcounter && window.goatcounter.count) {
+            window.goatcounter.count({
+              path: '/klick-5wochen-kurs',
+              title: 'Klick: 5 Wochen Kurs',
+              event: false
+            });
+          }
+        }
+      });
+
+      // 4. Eintrag: Klick auf "Instagram" (nur 1x pro Person)
       document.getElementById('btn-insta').addEventListener('click', function() {
         if (!localStorage.getItem('counted_insta')) {
           localStorage.setItem('counted_insta', 'true');
