@@ -1,0 +1,14 @@
+# Python & virtuelle Umgebungen
+__pycache__/
+.venv/
+.Python
+*.py[cod]
+*.py
+
+# Alle Videos außer dem finalen/sauberen video_barren.mp4 ignorieren
+*.mp4
+*.mov
+!video_barren.mp4
+
+# Editor-Configs & Lock-Dateien falls gewünscht (optional)
+.DS_Store
