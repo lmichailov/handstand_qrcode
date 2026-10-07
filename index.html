@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Handstand 5-Wochen-Kurs & Coaching – Lilia</title>
+  <title>Handstand 5-Wochen-Kurs – Lilia</title>
   <style>
     body {
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
@@ -198,6 +198,18 @@
       opacity: 0.95;
       margin-top: 2px;
     }
+
+    .btn-single {
+      background: #1f2937;
+      color: white;
+    }
+    .btn-single span {
+      display: block;
+      font-size: 11px;
+      font-weight: 400;
+      opacity: 0.95;
+      margin-top: 2px;
+    }
     
     .btn-flyer {
       background: #e9ecef;
@@ -272,7 +284,7 @@
     <!-- LINKE SEITE: Text, Termine & Buchungs-Buttons -->
     <div class="content-side">
       <div class="slogan">Deine Hände können mehr als nur tippen</div>
-      <h1>Handstand 5-Wochen-Kurs & Coaching</h1>
+      <h1>Handstand 5-Wochen-Kurs</h1>
       
       <p>Hallo liebe Sportcommunity! 🤸‍♂️✨
 
@@ -282,7 +294,7 @@ Ich kenne das Gefühl so gut: Ich habe selbst ewig gekämpft, mich frustriert ge
 
       <!-- Null-Frust-Garantie -->
       <div class="guarantee-box">
-        🛡️ <b>Null-Frust-Garantie:</b> Du musst nicht super stark sein oder Vorkenntnisse haben. Über 90 % unserer Teilnehmer starten bei Null und lernen hier zum ersten Mal, wie sich ein stabiler, sicherer Handstand wirklich anfühlt.
+        🛡️ <b>Null-Frust-Garantie:</b> Du musst nicht super stark sein oder Vorkenntnisse haben. Über 90 % unserer Teilnehmer starten bei Null und lernen hier zum ersten Mal, wie sich ein stabiler, sicherer Handstand wirklich fühlt.
       </div>
 
       <p><b>Was dich in den 5 Wochen erwartet (Dein Erfolg):</b></p>
@@ -300,7 +312,7 @@ Ich kenne das Gefühl so gut: Ich habe selbst ewig gekämpft, mich frustriert ge
       <p>🚀 <b>5-Wochen-Kurs Termine:</b> 08.11., 15.11., 22.11., 29.11. und 06.12.2026 (jeweils sonntags von 14:00 bis 15:30 Uhr)<br>
       📍 <b>Wo:</b> <a href="https://maps.app.goo.gl/AfBfqszxrMUGMzLc8" target="_blank" rel="noopener noreferrer" style="color: #234d31; font-weight: bold; text-decoration: none;">Yoga Vidya Dortmund (An der Reinoldikirche 8)</a> – super zentral in der Innenstadt!</p>
 
-      <!-- 5-Wochen-Kurs Button (Haupt-Call-to-Action) -->
+      <!-- 5-Wochen-Kurs Button (149 €) -->
       <a href="https://backoffice.bsport.io/pass-express-checkout/3795/800182/paymentPack" 
          id="btn-5weeks-neu"
          class="btn btn-secondary" 
@@ -308,6 +320,16 @@ Ich kenne das Gefühl so gut: Ich habe selbst ewig gekämpft, mich frustriert ge
          rel="noopener noreferrer">
          🚀 Jetzt Platz sichern & Handstand lernen (149 €)
          <span>Alle 5 Termine | Ziel: Freier Handstand bis Weihnachten 🎄</span>
+      </a>
+
+      <!-- Button für den einmaligen Termin (30 €) -->
+      <a href="https://backoffice.bsport.io/pass-express-checkout/3795/800183/paymentPack?membership=3795&force=true" 
+         id="btn-single-neu"
+         class="btn btn-single" 
+         target="_blank" 
+         rel="noopener noreferrer">
+         🎟️ Einmaligen Termin (1,5 Std.) mitmachen (30 €)
+         <span>Flexibel an einem Datum deiner Wahl</span>
       </a>
 
       <!-- Mini-FAQ -->
@@ -359,6 +381,15 @@ Ich kenne das Gefühl so gut: Ich habe selbst ewig gekämpft, mich frustriert ge
           localStorage.setItem('counted_5weeks_v13', 'true');
           if (window.goatcounter && window.goatcounter.count) {
             window.goatcounter.count({ path: '/klick-5wochen-v13', title: 'Klick: 5 Wochen Kurs (V13)', event: false });
+          }
+        }
+      });
+
+      document.getElementById('btn-single-neu').addEventListener('click', function() {
+        if (!localStorage.getItem('counted_single_v13')) {
+          localStorage.setItem('counted_single_v13', 'true');
+          if (window.goatcounter && window.goatcounter.count) {
+            window.goatcounter.count({ path: '/klick-einzeltermin-v13', title: 'Klick: Einmaliger Termin (V13)', event: false });
           }
         }
       });
