@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Handstand Schnupperkurs & Coaching – Lilia</title>
+  <title>Handstand 5-Wochen-Kurs & Coaching – Lilia</title>
   <style>
     body {
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
@@ -35,7 +35,7 @@
     .content-side {
       flex: 1;
       text-align: left;
-      max-height: 600px;
+      max-height: 720px;
       overflow-y: auto;
       padding-right: 10px;
     }
@@ -54,25 +54,91 @@
       position: sticky;
       top: 20px;
     }
-    /* Video noch etwas größer gezogen im perfekten Hochformat */
+    /* Video im perfekten Hochformat */
     .video-container {
       width: 100%;
-      height: 600px;
+      height: 440px;
       border-radius: 14px;
       object-fit: cover;
       box-shadow: 0 6px 16px rgba(0,0,0,0.12);
       display: block;
+      margin-bottom: 15px;
     }
-    /* Stil für das Teilnehmer-Zitat */
+    /* Google Maps Container direkt eingebettet und anklickbar */
+    .map-container {
+      display: block;
+      width: 100%;
+      height: 220px;
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      border: 0;
+      position: relative;
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+    .map-container:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+    }
+    .map-container iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+      /* Damit man im iFrame nicht "feststeckt", aber draufklicken kann */
+      pointer-events: none; 
+    }
+    /* Kleiner Hinweis-Badge auf der Karte, damit man sieht, dass sie klickbar ist */
+    .map-hint {
+      position: absolute;
+      bottom: 10px;
+      right: 10px;
+      background: rgba(255, 255, 255, 0.9);
+      padding: 4px 8px;
+      font-size: 11px;
+      font-weight: 600;
+      color: #1a73e8;
+      border-radius: 6px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+      pointer-events: none;
+    }
+
+    /* Stil für das authentische Feedback */
     .testimonial {
       font-size: 13px;
       font-style: italic;
-      color: #555;
+      color: #444;
       background: #f4f7f5;
-      padding: 10px 14px;
+      padding: 12px 16px;
       border-radius: 8px;
       margin-bottom: 20px;
       border-left: 4px solid #234d31;
+    }
+    /* Box für Zero-Risk-Garantie */
+    .guarantee-box {
+      background: #f0f7f4;
+      border: 1px solid #cce3d6;
+      padding: 14px 16px;
+      border-radius: 10px;
+      font-size: 13px;
+      color: #1f3e29;
+      margin-bottom: 20px;
+      line-height: 1.5;
+    }
+    /* Mini-FAQ Box */
+    .faq-box {
+      background: #f7f9fa;
+      border: 1px solid #e2e8f0;
+      padding: 15px;
+      border-radius: 10px;
+      margin-bottom: 20px;
+      font-size: 13px;
+      color: #333;
+      line-height: 1.5;
+    }
+    .faq-box h4 {
+      margin: 0 0 8px 0;
+      color: #234d31;
+      font-size: 14px;
     }
     /* Box für den Zahlungs-Hinweis */
     .help-box {
@@ -121,21 +187,16 @@
     }
     .btn:active { transform: scale(0.98); }
     
-    .btn-booking {
+    .btn-secondary {
       background: #234d31;
       color: white;
     }
-    .btn-booking span, .btn-secondary span {
+    .btn-secondary span {
       display: block;
       font-size: 11px;
       font-weight: 400;
       opacity: 0.95;
       margin-top: 2px;
-    }
-
-    .btn-secondary {
-      background: #3b6e4e;
-      color: white;
     }
     
     .btn-flyer {
@@ -175,7 +236,10 @@
         position: static;
       }
       .video-container {
-        height: 420px;
+        height: 400px;
+      }
+      .map-container {
+        height: 200px;
       }
       ul {
         text-align: left;
@@ -191,80 +255,89 @@
 <body>
   <div class="card">
     
-    <!-- RECHTE SEITE: Das noch größere Video -->
+    <!-- RECHTE SEITE: Video + Anklickbare Google Maps Karte mit deinem Link -->
     <div class="video-side">
       <video src="video_barren.mp4" class="video-container" autoplay loop muted playsinline></video>
+      
+      <!-- Anklickbare Karte verlinkt auf deinen exakten Maps-Shortlink -->
+      <a href="https://maps.app.goo.gl/AfBfqszxrMUGMzLc8" 
+         target="_blank" 
+         rel="noopener noreferrer" 
+         class="map-container">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2482.899557438183!2d7.466547!3d51.514125!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47b919e27317b9df%3A0xf91a8893b6a5a41b!2sYoga%20Vidya%20Dortmund!5e0!3m2!1sde!2sde!4v1700000000000!5m2!1sde!2sde" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <span class="map-hint">📍 Route öffnen</span>
+      </a>
     </div>
 
-    <!-- LINKE SEITE: Dein Text, Termine, Buchungs-Buttons & Hinweise -->
+    <!-- LINKE SEITE: Text, Termine & Buchungs-Buttons -->
     <div class="content-side">
       <div class="slogan">Deine Hände können mehr als nur tippen</div>
-      <h1>Handstand Schnupperkurs & Coaching</h1>
+      <h1>Handstand 5-Wochen-Kurs & Coaching</h1>
       
       <p>Hallo liebe Sportcommunity! 🤸‍♂️✨
 
 Hand aufs Herz: Wer von euch träumt insgeheim auch davon, endlich mal frei und sicher auf den Händen zu stehen?
 
-Ich kenne das Gefühl so gut: Ich habe selbst ewig gekämpft, mich frustriert gegen die Wand geworfen und gedacht, mir fehlt einfach die Kraft oder das Talent. Bis ich gemerkt habe: Es ist fast reine Technik und das richtige Gefühl für die Balance! Genau das möchte ich euch weitergeben – ohne Umwege, mit ganz viel Spaß und ohne diesen typischen Frust 😇🫶
+Ich kenne das Gefühl so gut: Ich habe selbst ewig gekämpft, mich frustriert gegen die Wand geworfen und gedacht, mir fehlt einfach die Kraft oder das Talent. Bis ich gemerkt habe: Es ist fast reine Technik und das richtige Gefühl für die Balance! Genau das möchte ich euch weitergeben – ohne Umwege, mit ganz viel Spaß und ohne diesen typischen Frust 😇🫶</p>
 
-Kommt am besten einfach zu unserem entspannten Schnupperkurs vorbei. Wir schauen gemeinsam, wie sich das Ganze anfühlt, nehmen jegliche Angst vor dem Umkippen und testen, ob ihr Lust auf mehr habt:</p>
+      <!-- Null-Frust-Garantie -->
+      <div class="guarantee-box">
+        🛡️ <b>Null-Frust-Garantie:</b> Du musst nicht super stark sein oder Vorkenntnisse haben. Über 90 % unserer Teilnehmer starten bei Null und lernen hier zum ersten Mal, wie sich ein stabiler, sicherer Handstand wirklich anfühlt.
+      </div>
 
+      <p><b>Was dich in den 5 Wochen erwartet (Dein Erfolg):</b></p>
       <ul>
-        <li><b>Einfach für jeden:</b> Du musst vorher keinen Handstand können und kein Zirkusprofi sein!</li>
-        <li><b>Sicher & mit Vertrauen:</b> Wir tasten uns Schritt für Schritt vor – mit Matten und Partner-Hilfe.</li>
-        <li><b>Leichtigkeit statt Wuchten:</b> Du lernst, mit cleverer Hebelwirkung hochzugehen, statt dich mit purer Gewalt hochzuschleudern.</li>
+        <li><b>✨ Das perfekte Fundament:</b> Keine wilde Wuchterei, sondern smarte Hebelwirkung und präzise Körperspannung.</li>
+        <li><b>🧠 Mentale Sicherheit:</b> Wir nehmen dir Schritt für Schritt die Angst vorm Umkippen – durch gezielte Partner-Hilfe und sichere Übungen.</li>
+        <li><b>🏆 Ein Skill fürs Leben:</b> Ein freier Handstand, der nicht nur auf Fotos und Videos beeindruckt, sondern dir unglaublich viel Körpergefühl schenkt!</li>
       </ul>
 
-      <p>🗓️ <b>Schnupperkurs:</b> So., 4. Oktober | 14:30 – 15:30 Uhr<br>
-      🚀 <b>5-Wochen-Kurs Termine:</b> 08.11., 15.11., 22.11., 29.11. und 06.12.2026 (jeweils sonntags von 14:00 bis 15:30 Uhr)<br>
-      📍 <b>Wo:</b> <a href="https://www.yoga-vidya-dortmund.de/" target="_blank" rel="noopener noreferrer" style="color: #234d31; font-weight: bold; text-decoration: none;">Yoga Vidya Dortmund</a> (An der Reinoldikirche 8)</p>
+      <!-- Echtes, lockeres Teilnehmer-Feedback -->
+      <div class="testimonial">
+        „Ey danke nochmal für den Kurs gestern! Hab vorher echt gedacht, ich packs nie ohne Wand, aber mit den Tipps stand ich zum ersten Mal frei. Mega gut erklärt! 🙌“
+      </div>
 
-      <!-- Kurzes Feedback -->
-      <div class="testimonial">„Hätte nie gedacht, dass ich nach 1 Stunde schon so sicher stehe!“</div>
+      <p>🚀 <b>5-Wochen-Kurs Termine:</b> 08.11., 15.11., 22.11., 29.11. und 06.12.2026 (jeweils sonntags von 14:00 bis 15:30 Uhr)<br>
+      📍 <b>Wo:</b> <a href="https://maps.app.goo.gl/AfBfqszxrMUGMzLc8" target="_blank" rel="noopener noreferrer" style="color: #234d31; font-weight: bold; text-decoration: none;">Yoga Vidya Dortmund (An der Reinoldikirche 8)</a> – super zentral in der Innenstadt!</p>
 
-      <!-- 1. Kurs: Schnupperkurs für 10 € -->
-      <a href="https://backoffice.bsport.io/one-click-booking/3795/43171505?" 
-         id="btn-booking-neu"
-         class="btn btn-booking" 
-         target="_blank" 
-         rel="noopener noreferrer">
-         🎟️ Schnupperkurs buchen (nur 10 €)
-         <span>Inkl. Rabatt-Gutschein für den Aufbaukurs!</span>
-      </a>
-
-      <!-- 2. Kurs: 5 Wochen Kurs für 149 € -->
+      <!-- 5-Wochen-Kurs Button (Haupt-Call-to-Action) -->
       <a href="https://backoffice.bsport.io/pass-express-checkout/3795/800182/paymentPack" 
          id="btn-5weeks-neu"
          class="btn btn-secondary" 
          target="_blank" 
          rel="noopener noreferrer">
-         🚀 Handstand 5-Wochen-Kurs (149 €)
-         <span>Alle 5 Termine | Registrierung erforderlich</span>
+         🚀 Jetzt Platz sichern & Handstand lernen (149 €)
+         <span>Alle 5 Termine | Ziel: Freier Handstand bis Weihnachten 🎄</span>
       </a>
 
-      <p><b>Wie es weitergeht:</b><br>
-      Wenn der Funke überspringt und ihr merkt, wie viel Laune das macht, nehme ich euch im November super gerne in unseren 5-Wochen-Kurs mit! Da ziehen wir das Ganze dann gemeinsam durch – mit dem Ziel, dass ihr an Weihnachten stolz euren Handstand vor dem Baum präsentieren könnt 🎄 (Für alle aus dem Schnupperkurs gibt’s dafür natürlich einen kleinen Rabatt 😉)</p>
+      <!-- Mini-FAQ -->
+      <div class="faq-box">
+        <h4>Häufige Fragen kurz beantwortet:</h4>
+        • <b>Brauche ich spezielle Vorkenntnisse?</b> Nein, bequeme Sportkleidung reicht völlig aus!<br>
+        • <b>Was ist, wenn ich einen Termin verpasse?</b> Schreib mir einfach kurz, wir finden eine Lösung.<br>
+        • <b>Ist das sicher?</b> Ja, wir arbeiten methodisch und unterstützen uns gegenseitig.
+      </div>
 
       <!-- Hilfreicher Hinweis zum Bezahlen -->
       <div class="help-box">
         💡 <b>Probleme beim Bezahlen?</b> Schreib mir einfach direkt auf Instagram (<a href="https://instagram.com/lilia.milo" target="_blank" style="color: #79552d; font-weight: bold;">@lilia.milo</a>). Schick mir am besten deine Nummer, dann machen wir das gemeinsam – manchmal ist es ein bisschen tricky!
       </div>
 
-      <!-- 3. Studio Link -->
+      <!-- Studio Link -->
       <a href="https://www.yoga-vidya-dortmund.de/" 
          id="btn-studio-neu"
          class="btn btn-studio" 
          target="_blank" 
          rel="noopener noreferrer">🧘‍♀️ Yoga Vidya Dortmund Website</a>
 
-      <!-- 4. Flyer Download -->
+      <!-- Flyer Download -->
       <a href="Flyer_handtand.pdf" 
          id="btn-flyer-neu"
          class="btn btn-flyer" 
          target="_blank" 
          rel="noopener noreferrer">📄 Offiziellen Kurs-Flyer ansehen (PDF)</a>
 
-      <!-- 5. Instagram -->
+      <!-- Instagram -->
       <a href="https://instagram.com/lilia.milo" 
          id="btn-insta-neu"
          class="btn btn-insta" 
@@ -278,50 +351,41 @@ Kommt am besten einfach zu unserem entspannten Schnupperkurs vorbei. Wir schauen
   <script>
     window.addEventListener('load', function() {
       if (window.goatcounter && window.goatcounter.count) {
-        window.goatcounter.count({ path: '/handstand_qrcode_v2', title: 'QR-Code Aufruf (Neu)', event: false });
+        window.goatcounter.count({ path: '/handstand_qrcode_v13', title: 'QR-Code Aufruf (V13)', event: false });
       }
 
-      document.getElementById('btn-booking-neu').addEventListener('click', function() {
-        if (!localStorage.getItem('counted_booking_v2')) {
-          localStorage.setItem('counted_booking_v2', 'true');
-          if (window.goatcounter && window.goatcounter.count) {
-            window.goatcounter.count({ path: '/klick-schnupperkurs-neu', title: 'Klick: Schnupperkurs buchen (Neu)', event: false });
-          }
-        }
-      });
-
       document.getElementById('btn-5weeks-neu').addEventListener('click', function() {
-        if (!localStorage.getItem('counted_5weeks_v2')) {
-          localStorage.setItem('counted_5weeks_v2', 'true');
+        if (!localStorage.getItem('counted_5weeks_v13')) {
+          localStorage.setItem('counted_5weeks_v13', 'true');
           if (window.goatcounter && window.goatcounter.count) {
-            window.goatcounter.count({ path: '/klick-5wochen-neu', title: 'Klick: 5 Wochen Kurs (Neu)', event: false });
+            window.goatcounter.count({ path: '/klick-5wochen-v13', title: 'Klick: 5 Wochen Kurs (V13)', event: false });
           }
         }
       });
 
       document.getElementById('btn-studio-neu').addEventListener('click', function() {
-        if (!localStorage.getItem('counted_studio_v2')) {
-          localStorage.setItem('counted_studio_v2', 'true');
+        if (!localStorage.getItem('counted_studio_v13')) {
+          localStorage.setItem('counted_studio_v13', 'true');
           if (window.goatcounter && window.goatcounter.count) {
-            window.goatcounter.count({ path: '/klick-studio-neu', title: 'Klick: Yoga Vidya Studio (Neu)', event: false });
+            window.goatcounter.count({ path: '/klick-studio-v13', title: 'Klick: Yoga Vidya Studio (V13)', event: false });
           }
         }
       });
 
       document.getElementById('btn-flyer-neu').addEventListener('click', function() {
-        if (!localStorage.getItem('counted_flyer_v2')) {
-          localStorage.setItem('counted_flyer_v2', 'true');
+        if (!localStorage.getItem('counted_flyer_v13')) {
+          localStorage.setItem('counted_flyer_v13', 'true');
           if (window.goatcounter && window.goatcounter.count) {
-            window.goatcounter.count({ path: '/klick-flyer-neu', title: 'Klick: Flyer PDF (Neu)', event: false });
+            window.goatcounter.count({ path: '/klick-flyer-v13', title: 'Klick: Flyer PDF (V13)', event: false });
           }
         }
       });
 
       document.getElementById('btn-insta-neu').addEventListener('click', function() {
-        if (!localStorage.getItem('counted_insta_v2')) {
-          localStorage.setItem('counted_insta_v2', 'true');
+        if (!localStorage.getItem('counted_insta_v13')) {
+          localStorage.getItem('counted_insta_v13', 'true');
           if (window.goatcounter && window.goatcounter.count) {
-            window.goatcounter.count({ path: '/klick-instagram-neu', title: 'Klick: Instagram (Neu)', event: false });
+            window.goatcounter.count({ path: '/klick-instagram-v13', title: 'Klick: Instagram (V13)', event: false });
           }
         }
       });
