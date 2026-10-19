@@ -38,6 +38,7 @@
       max-height: 720px;
       overflow-y: auto;
       padding-right: 10px;
+      position: relative;
     }
     /* Scrollbar für die linke Seite feiner machen */
     .content-side::-webkit-scrollbar {
@@ -84,10 +85,8 @@
       width: 100%;
       height: 100%;
       border: 0;
-      /* Damit man im iFrame nicht "feststeckt", aber draufklicken kann */
       pointer-events: none; 
     }
-    /* Kleiner Hinweis-Badge auf der Karte, damit man sieht, dass sie klickbar ist */
     .map-hint {
       position: absolute;
       bottom: 10px;
@@ -102,7 +101,6 @@
       pointer-events: none;
     }
 
-    /* Stil für das authentische Feedback */
     .testimonial {
       font-size: 13px;
       font-style: italic;
@@ -113,7 +111,6 @@
       margin-bottom: 20px;
       border-left: 4px solid #234d31;
     }
-    /* Box für Zero-Risk-Garantie */
     .guarantee-box {
       background: #f0f7f4;
       border: 1px solid #cce3d6;
@@ -124,7 +121,6 @@
       margin-bottom: 20px;
       line-height: 1.5;
     }
-    /* Mini-FAQ Box */
     .faq-box {
       background: #f7f9fa;
       border: 1px solid #e2e8f0;
@@ -140,7 +136,6 @@
       color: #234d31;
       font-size: 14px;
     }
-    /* Box für den Zahlungs-Hinweis */
     .help-box {
       background: #fdf8f2;
       border: 1px solid #f3d19c;
@@ -184,6 +179,10 @@
       font-size: 14px;
       transition: transform 0.1s ease;
       text-align: center;
+      cursor: pointer;
+      border: none;
+      width: 100%;
+      box-sizing: border-box;
     }
     .btn:active { transform: scale(0.98); }
     
@@ -228,6 +227,53 @@
       color: white;
     }
 
+    .btn-back {
+      background: #e2e8f0;
+      color: #333;
+      margin-bottom: 20px;
+      font-weight: 600;
+    }
+
+    /* Ansichten-Steuerung */
+    .view-section {
+      display: none;
+    }
+    .view-section.active {
+      display: block;
+    }
+
+    /* Einzeltermine Karten-Stil */
+    .single-date-card {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      padding: 14px 16px;
+      border-radius: 10px;
+      margin-bottom: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .single-date-info {
+      font-size: 13px;
+      font-weight: 600;
+      color: #1a1a1a;
+    }
+    .single-date-btn {
+      background: #234d31;
+      color: white;
+      padding: 10px 14px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 600;
+      text-align: center;
+      display: block;
+      transition: background 0.15s ease;
+    }
+    .single-date-btn:hover {
+      background: #1b3d27;
+    }
+
     /* Für Smartphones: Layout untereinander */
     @media (max-width: 768px) {
       .card {
@@ -267,11 +313,10 @@
 <body>
   <div class="card">
     
-    <!-- RECHTE SEITE: Video + Anklickbare Google Maps Karte mit deinem Link -->
+    <!-- RECHTE SEITE: Video + Anklickbare Google Maps Karte -->
     <div class="video-side">
       <video src="video_barren.mp4" class="video-container" autoplay loop muted playsinline></video>
       
-      <!-- Anklickbare Karte verlinkt auf deinen exakten Maps-Shortlink -->
       <a href="https://maps.app.goo.gl/AfBfqszxrMUGMzLc8" 
          target="_blank" 
          rel="noopener noreferrer" 
@@ -281,91 +326,169 @@
       </a>
     </div>
 
-    <!-- LINKE SEITE: Text, Termine & Buchungs-Buttons -->
+    <!-- LINKE SEITE: Wechselnde Ansichten (Hauptansicht & Einzeltermine-Ansicht) -->
     <div class="content-side">
-      <div class="slogan">Deine Hände können mehr als nur tippen</div>
-      <h1>Handstand 5-Wochen-Kurs</h1>
       
-      <p>Hallo liebe Sportcommunity! 🤸‍♂️✨
+      <!-- ANSICHT 1: HAUPTSEITE -->
+      <div id="view-main" class="view-section active">
+        <div class="slogan">Deine Hände können mehr als nur tippen</div>
+        <h1>Handstand 5-Wochen-Kurs</h1>
+        
+        <p>Hallo liebe Sportcommunity! 🤸‍♂️✨
 
 Hand aufs Herz: Wer von euch träumt insgeheim auch davon, endlich mal frei und sicher auf den Händen zu stehen?
 
 Ich kenne das Gefühl so gut: Ich habe selbst ewig gekämpft, mich frustriert gegen die Wand geworfen und gedacht, mir fehlt einfach die Kraft oder das Talent. Bis ich gemerkt habe: Es ist fast reine Technik und das richtige Gefühl für die Balance! Genau das möchte ich euch weitergeben – ohne Umwege, mit ganz viel Spaß und ohne diesen typischen Frust 😇🫶</p>
 
-      <!-- Null-Frust-Garantie -->
-      <div class="guarantee-box">
-        🛡️ <b>Null-Frust-Garantie:</b> Du musst nicht super stark sein oder Vorkenntnisse haben. Über 90 % unserer Teilnehmer starten bei Null und lernen hier zum ersten Mal, wie sich ein stabiler, sicherer Handstand wirklich fühlt.
+        <!-- Null-Frust-Garantie -->
+        <div class="guarantee-box">
+          🛡️ <b>Null-Frust-Garantie:</b> Du musst nicht super stark sein oder Vorkenntnisse haben. Über 90 % unserer Teilnehmer starten bei Null und lernen hier zum ersten Mal, wie sich ein stabiler, sicherer Handstand wirklich fühlt.
+        </div>
+
+        <p><b>Was dich in den 5 Wochen erwartet (Dein Erfolg):</b></p>
+        <ul>
+          <li><b>✨ Das perfekte Fundament:</b> Keine wilde Wuchterei, sondern smarte Hebelwirkung und präzise Körperspannung.</li>
+          <li><b>🧠 Mentale Sicherheit:</b> Wir nehmen dir Schritt für Schritt die Angst vorm Umkippen – durch gezielte Partner-Hilfe und sichere Übungen.</li>
+          <li><b>🏆 Ein Skill fürs Leben:</b> Ein freier Handstand, der nicht nur auf Fotos und Videos beeindruckt, sondern dir unglaublich viel Körpergefühl schenkt!</li>
+        </ul>
+
+        <!-- Echtes Teilnehmer-Feedback -->
+        <div class="testimonial">
+          „Ey danke nochmal für den Kurs gestern! Hab vorher echt gedacht, ich packs nie ohne Wand, aber mit den Tipps stand ich zum ersten Mal frei. Mega gut erklärt! 🙌“
+        </div>
+
+        <p>🚀 <b>5-Wochen-Kurs Termine:</b> 08.11., 15.11., 22.11., 29.11. und 06.12.2026 (jeweils sonntags von 14:00 bis 15:30 Uhr)<br>
+        📍 <b>Wo:</b> <a href="https://maps.app.goo.gl/AfBfqszxrMUGMzLc8" target="_blank" rel="noopener noreferrer" style="color: #234d31; font-weight: bold; text-decoration: none;">Yoga Vidya Dortmund (An der Reinoldikirche 8)</a> – super zentral in der Innenstadt!</p>
+
+        <!-- 5-Wochen-Kurs Button (149 €) -->
+        <a href="https://backoffice.bsport.io/pass-express-checkout/3795/800182/paymentPack" 
+           id="btn-5weeks-neu"
+           class="btn btn-secondary" 
+           target="_blank" 
+           rel="noopener noreferrer">
+           🚀 Jetzt Platz sichern & Handstand lernen (149 €)
+           <span>Alle 5 Termine | Ziel: Freier Handstand bis Weihnachten 🎄</span>
+        </a>
+
+        <!-- Button für Einmaligen Termin -> Schaltet auf Ansicht 2 um -->
+        <button type="button" 
+                id="btn-show-single-view"
+                class="btn btn-single">
+           🎟️ Einmaligen Termin (1,5 Std.) mitmachen (30 €)
+           <span>Wähle hier deinen Lieblingstermin aus</span>
+        </button>
+
+        <!-- Mini-FAQ -->
+        <div class="faq-box">
+          <h4>Häufige Fragen kurz beantwortet:</h4>
+          • <b>Brauche ich spezielle Vorkenntnisse?</b> Nein, bequeme Sportkleidung reicht völlig aus!<br>
+          • <b>Was ist, wenn ich einen Termin verpasse?</b> Schreib mir einfach kurz, wir finden eine Lösung.<br>
+          • <b>Ist das sicher?</b> Ja, wir arbeiten methodisch und unterstützen uns gegenseitig.
+        </div>
+
+        <!-- Hilfreicher Hinweis zum Bezahlen -->
+        <div class="help-box">
+          💡 <b>Probleme beim Bezahlen?</b> Schreib mir einfach direkt auf Instagram (<a href="https://instagram.com/lilia.milo" target="_blank" style="color: #79552d; font-weight: bold;">@lilia.milo</a>). Schick mir am besten deine Nummer, dann machen wir das gemeinsam – manchmal ist es ein bisschen tricky!
+        </div>
+
+        <!-- Studio Link -->
+        <a href="https://www.yoga-vidya-dortmund.de/" 
+           id="btn-studio-neu"
+           class="btn btn-studio" 
+           target="_blank" 
+           rel="noopener noreferrer">🧘‍♀️ Yoga Vidya Dortmund Website</a>
+
+        <!-- Flyer Download -->
+        <a href="Flyer_handtand.pdf" 
+           id="btn-flyer-neu"
+           class="btn btn-flyer" 
+           target="_blank" 
+           rel="noopener noreferrer">📄 Offiziellen Kurs-Flyer ansehen (PDF)</a>
+
+        <!-- Instagram -->
+        <a href="https://instagram.com/lilia.milo" 
+           id="btn-insta-neu"
+           class="btn btn-insta" 
+           target="_blank">📸 @lilia.milo auf Instagram</a>
+
+        <p style="margin-top: 15px; font-size: 13px; text-align: center;">Ich freue mich riesig auf euch! Bei Fragen meldet euch einfach jederzeit bei mir 📲</p>
       </div>
 
-      <p><b>Was dich in den 5 Wochen erwartet (Dein Erfolg):</b></p>
-      <ul>
-        <li><b>✨ Das perfekte Fundament:</b> Keine wilde Wuchterei, sondern smarte Hebelwirkung und präzise Körperspannung.</li>
-        <li><b>🧠 Mentale Sicherheit:</b> Wir nehmen dir Schritt für Schritt die Angst vorm Umkippen – durch gezielte Partner-Hilfe und sichere Übungen.</li>
-        <li><b>🏆 Ein Skill fürs Leben:</b> Ein freier Handstand, der nicht nur auf Fotos und Videos beeindruckt, sondern dir unglaublich viel Körpergefühl schenkt!</li>
-      </ul>
+      <!-- ANSICHT 2: EINZELTERMINE AUSWAHL -->
+      <div id="view-single-dates" class="view-section">
+        <button type="button" id="btn-back-to-main" class="btn btn-back">
+          ← Zurück zur Übersicht
+        </button>
 
-      <!-- Echtes, lockeres Teilnehmer-Feedback -->
-      <div class="testimonial">
-        „Ey danke nochmal für den Kurs gestern! Hab vorher echt gedacht, ich packs nie ohne Wand, aber mit den Tipps stand ich zum ersten Mal frei. Mega gut erklärt! 🙌“
+        <div class="slogan">Flexibel mitmachen</div>
+        <h1>Wähle deinen Einzeltermin</h1>
+        <p>Du möchtest an einem bestimmten Datum schnuppern oder bist an den anderen Sonntagen verhindert? Wähle hier deinen Wunschtermin für <b>30 €</b> aus:</p>
+
+        <!-- Termin 1 -->
+        <div class="single-date-card">
+          <div class="single-date-info">Sonntag, 8. November 2026 • 14:00 - 15:30 Uhr</div>
+          <a href="https://backoffice.bsport.io/booker-module-s/3795/44146115?membership=3795" 
+             class="single-date-btn track-single-link" 
+             data-track-id="single-08-nov"
+             target="_blank" 
+             rel="noopener noreferrer">
+             📅 Termin 1 buchen (30 €)
+          </a>
+        </div>
+
+        <!-- Termin 2 -->
+        <div class="single-date-card">
+          <div class="single-date-info">Sonntag, 15. November 2026 • 14:00 - 15:30 Uhr</div>
+          <a href="https://backoffice.bsport.io/customer/payment/offer/44146347?membership=3795" 
+             class="single-date-btn track-single-link" 
+             data-track-id="single-15-nov"
+             target="_blank" 
+             rel="noopener noreferrer">
+             📅 Termin 2 buchen (30 €)
+          </a>
+        </div>
+
+        <!-- Termin 3 -->
+        <div class="single-date-card">
+          <div class="single-date-info">Sonntag, 22. November 2026 • 14:00 - 15:30 Uhr</div>
+          <a href="https://backoffice.bsport.io/customer/payment/offer/44146451?membership=3795" 
+             class="single-date-btn track-single-link" 
+             data-track-id="single-22-nov"
+             target="_blank" 
+             rel="noopener noreferrer">
+             📅 Termin 3 buchen (30 €)
+          </a>
+        </div>
+
+        <!-- Termin 4 -->
+        <div class="single-date-card">
+          <div class="single-date-info">Sonntag, 29. November 2026 • 14:00 - 15:30 Uhr</div>
+          <a href="https://backoffice.bsport.io/customer/payment/offer/44214833?membership=3795" 
+             class="single-date-btn track-single-link" 
+             data-track-id="single-29-nov"
+             target="_blank" 
+             rel="noopener noreferrer">
+             📅 Termin 4 buchen (30 €)
+          </a>
+        </div>
+
+        <!-- Termin 5 -->
+        <div class="single-date-card">
+          <div class="single-date-info">Sonntag, 6. Dezember 2026 • 14:00 - 15:30 Uhr</div>
+          <a href="https://backoffice.bsport.io/customer/payment/offer/44214941?membership=3795" 
+             class="single-date-btn track-single-link" 
+             data-track-id="single-06-dez"
+             target="_blank" 
+             rel="noopener noreferrer">
+             📅 Termin 5 buchen (30 €)
+          </a>
+        </div>
+
+        <div class="help-box" style="margin-top: 25px;">
+          💡 <b>Hinweis:</b> Nach der Buchung eines Einzeltermins erhältst du alle Infos direkt per E-Mail für den jeweiligen Sonntag. Bei Fragen melde dich jederzeit bei mir!
+        </div>
       </div>
 
-      <p>🚀 <b>5-Wochen-Kurs Termine:</b> 08.11., 15.11., 22.11., 29.11. und 06.12.2026 (jeweils sonntags von 14:00 bis 15:30 Uhr)<br>
-      📍 <b>Wo:</b> <a href="https://maps.app.goo.gl/AfBfqszxrMUGMzLc8" target="_blank" rel="noopener noreferrer" style="color: #234d31; font-weight: bold; text-decoration: none;">Yoga Vidya Dortmund (An der Reinoldikirche 8)</a> – super zentral in der Innenstadt!</p>
-
-      <!-- 5-Wochen-Kurs Button (149 €) -->
-      <a href="https://backoffice.bsport.io/pass-express-checkout/3795/800182/paymentPack" 
-         id="btn-5weeks-neu"
-         class="btn btn-secondary" 
-         target="_blank" 
-         rel="noopener noreferrer">
-         🚀 Jetzt Platz sichern & Handstand lernen (149 €)
-         <span>Alle 5 Termine | Ziel: Freier Handstand bis Weihnachten 🎄</span>
-      </a>
-
-      <!-- Button für den einmaligen Termin (30 €) -->
-      <a href="https://backoffice.bsport.io/pass-express-checkout/3795/800183/paymentPack?membership=3795&force=true" 
-         id="btn-single-neu"
-         class="btn btn-single" 
-         target="_blank" 
-         rel="noopener noreferrer">
-         🎟️ Einmaligen Termin (1,5 Std.) mitmachen (30 €)
-         <span>Flexibel an einem Datum deiner Wahl</span>
-      </a>
-
-      <!-- Mini-FAQ -->
-      <div class="faq-box">
-        <h4>Häufige Fragen kurz beantwortet:</h4>
-        • <b>Brauche ich spezielle Vorkenntnisse?</b> Nein, bequeme Sportkleidung reicht völlig aus!<br>
-        • <b>Was ist, wenn ich einen Termin verpasse?</b> Schreib mir einfach kurz, wir finden eine Lösung.<br>
-        • <b>Ist das sicher?</b> Ja, wir arbeiten methodisch und unterstützen uns gegenseitig.
-      </div>
-
-      <!-- Hilfreicher Hinweis zum Bezahlen -->
-      <div class="help-box">
-        💡 <b>Probleme beim Bezahlen?</b> Schreib mir einfach direkt auf Instagram (<a href="https://instagram.com/lilia.milo" target="_blank" style="color: #79552d; font-weight: bold;">@lilia.milo</a>). Schick mir am besten deine Nummer, dann machen wir das gemeinsam – manchmal ist es ein bisschen tricky!
-      </div>
-
-      <!-- Studio Link -->
-      <a href="https://www.yoga-vidya-dortmund.de/" 
-         id="btn-studio-neu"
-         class="btn btn-studio" 
-         target="_blank" 
-         rel="noopener noreferrer">🧘‍♀️ Yoga Vidya Dortmund Website</a>
-
-      <!-- Flyer Download -->
-      <a href="Flyer_handtand.pdf" 
-         id="btn-flyer-neu"
-         class="btn btn-flyer" 
-         target="_blank" 
-         rel="noopener noreferrer">📄 Offiziellen Kurs-Flyer ansehen (PDF)</a>
-
-      <!-- Instagram -->
-      <a href="https://instagram.com/lilia.milo" 
-         id="btn-insta-neu"
-         class="btn btn-insta" 
-         target="_blank">📸 @lilia.milo auf Instagram</a>
-
-      <p style="margin-top: 15px; font-size: 13px; text-align: center;">Ich freue mich riesig auf euch! Bei Fragen meldet euch einfach jederzeit bei mir 📲</p>
     </div>
 
   </div>
@@ -373,50 +496,86 @@ Ich kenne das Gefühl so gut: Ich habe selbst ewig gekämpft, mich frustriert ge
   <script>
     window.addEventListener('load', function() {
       if (window.goatcounter && window.goatcounter.count) {
-        window.goatcounter.count({ path: '/handstand_qrcode_v13', title: 'QR-Code Aufruf (V13)', event: false });
+        window.goatcounter.count({ path: '/handstand_qrcode_v14', title: 'QR-Code Aufruf (V14)', event: false });
       }
 
+      // Ansichten-Wechsel Logik
+      const viewMain = document.getElementById('view-main');
+      const viewSingleDates = document.getElementById('view-single-dates');
+      const btnShowSingle = document.getElementById('btn-show-single-view');
+      const btnBackToMain = document.getElementById('btn-back-to-main');
+
+      btnShowSingle.addEventListener('click', function() {
+        viewMain.classList.remove('active');
+        viewSingleDates.classList.add('active');
+        // Nach oben scrollen innerhalb der Box
+        document.querySelector('.content-side').scrollTop = 0;
+
+        if (!localStorage.getItem('counted_single_view_v14')) {
+          localStorage.setItem('counted_single_view_v14', 'true');
+          if (window.goatcounter && window.goatcounter.count) {
+            window.goatcounter.count({ path: '/klick-einzeltermine-ansicht-v14', title: 'Ansicht: Einzeltermine geöffnet (V14)', event: false });
+          }
+        }
+      });
+
+      btnBackToMain.addEventListener('click', function() {
+        viewSingleDates.classList.remove('active');
+        viewMain.classList.add('active');
+        document.querySelector('.content-side').scrollTop = 0;
+      });
+
+      // Tracking für 5-Wochen-Kurs
       document.getElementById('btn-5weeks-neu').addEventListener('click', function() {
-        if (!localStorage.getItem('counted_5weeks_v13')) {
-          localStorage.setItem('counted_5weeks_v13', 'true');
+        if (!localStorage.getItem('counted_5weeks_v14')) {
+          localStorage.setItem('counted_5weeks_v14', 'true');
           if (window.goatcounter && window.goatcounter.count) {
-            window.goatcounter.count({ path: '/klick-5wochen-v13', title: 'Klick: 5 Wochen Kurs (V13)', event: false });
+            window.goatcounter.count({ path: '/klick-5wochen-v14', title: 'Klick: 5 Wochen Kurs (V14)', event: false });
           }
         }
       });
 
-      document.getElementById('btn-single-neu').addEventListener('click', function() {
-        if (!localStorage.getItem('counted_single_v13')) {
-          localStorage.setItem('counted_single_v13', 'true');
-          if (window.goatcounter && window.goatcounter.count) {
-            window.goatcounter.count({ path: '/klick-einzeltermin-v13', title: 'Klick: Einmaliger Termin (V13)', event: false });
+      // Tracking für die einzelnen Termin-Links
+      document.querySelectorAll('.track-single-link').forEach(function(link) {
+        link.addEventListener('click', function() {
+          const trackId = this.getAttribute('data-track-id');
+          const storageKey = 'counted_single_' + trackId + '_v14';
+          
+          if (!localStorage.getItem(storageKey)) {
+            localStorage.setItem(storageKey, 'true');
+            if (window.goatcounter && window.goatcounter.count) {
+              window.goatcounter.count({ path: '/klick-einzeltermin-' + trackId + '-v14', title: 'Klick: Einzeltermin ' + trackId + ' (V14)', event: false });
+            }
           }
-        }
+        });
       });
 
+      // Tracking Studio
       document.getElementById('btn-studio-neu').addEventListener('click', function() {
-        if (!localStorage.getItem('counted_studio_v13')) {
-          localStorage.setItem('counted_studio_v13', 'true');
+        if (!localStorage.getItem('counted_studio_v14')) {
+          localStorage.setItem('counted_studio_v14', 'true');
           if (window.goatcounter && window.goatcounter.count) {
-            window.goatcounter.count({ path: '/klick-studio-v13', title: 'Klick: Yoga Vidya Studio (V13)', event: false });
+            window.goatcounter.count({ path: '/klick-studio-v14', title: 'Klick: Yoga Vidya Studio (V14)', event: false });
           }
         }
       });
 
+      // Tracking Flyer
       document.getElementById('btn-flyer-neu').addEventListener('click', function() {
-        if (!localStorage.getItem('counted_flyer_v13')) {
-          localStorage.setItem('counted_flyer_v13', 'true');
+        if (!localStorage.getItem('counted_flyer_v14')) {
+          localStorage.setItem('counted_flyer_v14', 'true');
           if (window.goatcounter && window.goatcounter.count) {
-            window.goatcounter.count({ path: '/klick-flyer-v13', title: 'Klick: Flyer PDF (V13)', event: false });
+            window.goatcounter.count({ path: '/klick-flyer-v14', title: 'Klick: Flyer PDF (V14)', event: false });
           }
         }
       });
 
+      // Tracking Instagram
       document.getElementById('btn-insta-neu').addEventListener('click', function() {
-        if (!localStorage.getItem('counted_insta_v13')) {
-          localStorage.getItem('counted_insta_v13', 'true');
+        if (!localStorage.getItem('counted_insta_v14')) {
+          localStorage.setItem('counted_insta_v14', 'true');
           if (window.goatcounter && window.goatcounter.count) {
-            window.goatcounter.count({ path: '/klick-instagram-v13', title: 'Klick: Instagram (V13)', event: false });
+            window.goatcounter.count({ path: '/klick-instagram-v14', title: 'Klick: Instagram (V14)', event: false });
           }
         }
       });
