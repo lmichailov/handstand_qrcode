@@ -274,6 +274,40 @@
       background: #1b3d27;
     }
 
+
+    /* Technikaufgabe für Kursteilnehmende */
+    .practice-box {
+      background: #f2f8f5;
+      border-left: 4px solid #234d31;
+      border-radius: 10px;
+      padding: 14px 16px;
+      margin: 0 0 20px 0;
+      color: #224432;
+      font-size: 13px;
+      line-height: 1.5;
+    }
+    .practice-box p { margin: 6px 0 0; font-size: 13px; }
+
+    /* Feedback: integriert in das bestehende Button-Design */
+    .feedback-box {
+      background: #f7faf8;
+      border: 1px solid #d5e6db;
+      padding: 16px;
+      border-radius: 12px;
+      margin: 22px 0 16px;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+    .feedback-box p { font-size: 13px; margin: 7px 0 12px; }
+    .btn-feedback { background: #234d31; color: #fff; margin-bottom: 8px; }
+    .btn-feedback span {
+      display: block;
+      font-size: 11px;
+      font-weight: 400;
+      margin-top: 2px;
+    }
+    .feedback-note { color: #68776c; font-size: 12px !important; margin-bottom: 0 !important; }
+
     /* Für Smartphones: Layout untereinander */
     @media (max-width: 768px) {
       .card {
@@ -352,6 +386,12 @@ Ich kenne das Gefühl so gut: Ich habe selbst ewig gekämpft, mich frustriert ge
           <li><b>🏆 Ein Skill fürs Leben:</b> Ein freier Handstand, der nicht nur auf Fotos und Videos beeindruckt, sondern dir unglaublich viel Körpergefühl schenkt!</li>
         </ul>
 
+        <!-- Montags-Übung: kein zusätzlicher Präsenztermin -->
+        <div class="practice-box">
+          <b>🤸 Montags-Mini-Challenge: Schultern aktiv herausdrücken</b>
+          <p>Für zu Hause: Drücke im Vierfüßlerstand oder im gestreckten Stütz den Boden aktiv von dir weg – mit langen Armen und kontrollierter Schulterbewegung. Dieses Gefühl hilft dir später auch bei einem stabilen Handstand.</p>
+        </div>
+
         <!-- Echtes Teilnehmer-Feedback -->
         <div class="testimonial">
           „Ey danke nochmal für den Kurs gestern! Hab vorher echt gedacht, ich packs nie ohne Wand, aber mit den Tipps stand ich zum ersten Mal frei. Mega gut erklärt! 🙌“
@@ -410,6 +450,20 @@ Ich kenne das Gefühl so gut: Ich habe selbst ewig gekämpft, mich frustriert ge
            id="btn-insta-neu"
            class="btn btn-insta" 
            target="_blank">📸 @lilia.milo auf Instagram</a>
+
+        <!-- Feedback: öffnet das veröffentlichte Google-Formular. -->
+        <div class="feedback-box">
+          <b>💬 Du warst bei meinem Handstandkurs dabei?</b>
+          <p>Ich freue mich über deine Erfahrungen! Was hat dir besonders gut gefallen und was konntest du für dich mitnehmen? Dein Feedback bedeutet mir viel.</p>
+          <a href="https://docs.google.com/forms/d/e/1FAIpQLSel5oaMuVmbBAX7yR2OaC1IXZzAGmlhiIZtJ15H86F13bUTJQ/viewform?usp=publish-editor"
+             id="btn-feedback"
+             class="btn btn-feedback"
+             target="_blank"
+             rel="noopener noreferrer">⭐ Jetzt Kurs-Feedback geben
+             <span>4 kurze Fragen · ca. 1 Minute · freiwillig</span>
+          </a>
+          <p class="feedback-note">Mit deiner Erlaubnis darf ich dein Feedback anonym teilen. Danke fürs Mitmachen!</p>
+        </div>
 
         <p style="margin-top: 15px; font-size: 13px; text-align: center;">Ich freue mich riesig auf euch! Bei Fragen meldet euch einfach jederzeit bei mir 📲</p>
       </div>
@@ -498,6 +552,13 @@ Ich kenne das Gefühl so gut: Ich habe selbst ewig gekämpft, mich frustriert ge
       if (window.goatcounter && window.goatcounter.count) {
         window.goatcounter.count({ path: '/handstand_qrcode_v14', title: 'QR-Code Aufruf (V14)', event: false });
       }
+
+      // Erfasst nur den Klick auf den Feedback-Button; die Antworten bleiben bei Google Forms.
+      document.getElementById('btn-feedback').addEventListener('click', function() {
+        if (window.goatcounter && window.goatcounter.count) {
+          window.goatcounter.count({ path: '/klick-feedback-v15', title: 'Klick: Kurs-Feedback (V15)', event: true });
+        }
+      });
 
       // Ansichten-Wechsel Logik
       const viewMain = document.getElementById('view-main');
