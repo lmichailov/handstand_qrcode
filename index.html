@@ -580,6 +580,15 @@ Individuelles Handstandtraining ohne Leistungsdruck
     window.addEventListener('load', function() {
       if (window.goatcounter && window.goatcounter.count) {
         window.goatcounter.count({ path: '/handstand_qrcode_v14', title: 'QR-Code Aufruf (V14)', event: false });
+        // Nur bekannte Quellen erfassen; unmarkierte Links sind nicht eindeutig zuordenbar.
+        const sources = { flyer: 'Flyer', whatsapp: 'WhatsApp', instagram: 'Instagram' };
+        const source = (new URLSearchParams(window.location.search).get('quelle') || '').trim().toLowerCase();
+        const knownSource = Object.prototype.hasOwnProperty.call(sources, source);
+        window.goatcounter.count({
+          path: 'besuch-quelle-' + (knownSource ? source : 'unbekannt'),
+          title: 'Besuch über: ' + (knownSource ? sources[source] : 'Ohne Quellenangabe'),
+          event: true
+        });
       }
 
       // Öffentliche Google-Rezensionen.
