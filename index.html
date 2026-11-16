@@ -610,11 +610,8 @@ Individuelles Handstandtraining ohne Leistungsdruck
         // Nach oben scrollen innerhalb der Box
         document.querySelector('.content-side').scrollTop = 0;
 
-        if (!localStorage.getItem('counted_single_view_v14')) {
-          localStorage.setItem('counted_single_view_v14', 'true');
-          if (window.goatcounter && window.goatcounter.count) {
-            window.goatcounter.count({ path: '/klick-einzeltermine-ansicht-v14', title: 'Ansicht: Einzeltermine geöffnet (V14)', event: false });
-          }
+        if (window.goatcounter && window.goatcounter.count) {
+          window.goatcounter.count({ path: 'klick-einzeltermine-ansicht-v14', title: 'Ansicht: Einzeltermine geöffnet (V14)', event: true, no_session: true });
         }
       });
 
@@ -642,13 +639,8 @@ Individuelles Handstandtraining ohne Leistungsdruck
       document.querySelectorAll('.track-single-link').forEach(function(link) {
         link.addEventListener('click', function() {
           const trackId = this.getAttribute('data-track-id');
-          const storageKey = 'counted_single_' + trackId + '_v14';
-          
-          if (!localStorage.getItem(storageKey)) {
-            localStorage.setItem(storageKey, 'true');
-            if (window.goatcounter && window.goatcounter.count) {
-              window.goatcounter.count({ path: '/klick-einzeltermin-' + trackId + '-v14', title: 'Klick: Einzeltermin ' + trackId + ' (V14)', event: false });
-            }
+          if (window.goatcounter && window.goatcounter.count) {
+            window.goatcounter.count({ path: 'klick-einzeltermin-' + trackId + '-v14', title: 'Klick: Einzeltermin ' + trackId + ' (V14)', event: true, no_session: true });
           }
         });
       });
