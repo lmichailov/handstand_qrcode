@@ -1,11 +1,12 @@
 <!DOCTYPE html>
+
 <html lang="de">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Handstand 5-Wochen-Kurs – Lilia</title>
-  <meta name="google-site-verification" content="_9yPoDn9wTcroCp-X6LUdaLVahgAIUUqOZ7pxTQhsIg" />
-  <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Handstandkurse &amp; Personal Coaching in Dortmund – Lilia Michailov</title>
+<meta content="_9yPoDn9wTcroCp-X6LUdaLVahgAIUUqOZ7pxTQhsIg" name="google-site-verification"/>
+<style>
     body {
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
       background: #f7f9fa;
@@ -274,6 +275,22 @@
     .single-date-btn:hover {
       background: #1b3d27;
     }
+    /* Vergangene Einzeltermine: sichtbar, aber ohne Buchungslink */
+    .single-date-unavailable {
+      display: block;
+      background: #e9ecef;
+      color: #69717b;
+      padding: 10px 14px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      text-align: center;
+      cursor: not-allowed;
+    }
+    .single-date-card.past-date {
+      background: #f6f6f6;
+      border-color: #e6e6e6;
+    }
 
 
     /* Technikaufgabe für Kursteilnehmende */
@@ -338,226 +355,237 @@
         text-align: left;
       }
     }
-  </style>
 
-  <!-- GoatCounter Skript -->
-  <script data-goatcounter="https://handstand-dortmund.goatcounter.com/count"
-          data-goatcounter-settings='{"no_onload": true}'
-          async src="//gc.zgo.at/count.js"></script>
-</head>
-<body>
-  <div class="card">
-    
-    <!-- RECHTE SEITE: Video + Anklickbare Google Maps Karte -->
-    <div class="video-side">
-      <video src="video_barren.mp4" class="video-container" autoplay loop muted playsinline></video>
-      
-      <a href="https://maps.app.goo.gl/AfBfqszxrMUGMzLc8" 
-         target="_blank" 
-         rel="noopener noreferrer" 
-         class="map-container">
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2482.899557438183!2d7.466547!3d51.514125!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47b919e27317b9df%3A0xf91a8893b6a5a41b!2sYoga%20Vidya%20Dortmund!5e0!3m2!1sde!2sde!4v1700000000000!5m2!1sde!2sde" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-        <span class="map-hint">📍 Route öffnen</span>
-      </a>
-    </div>
+    /* Persönliches Handstand-Coaching */
+    .coaching-box {
+      background: linear-gradient(145deg, #f0f7f3, #ffffff);
+      border: 1px solid #cce3d6;
+      border-radius: 14px;
+      padding: 20px;
+      margin: 22px 0;
+      text-align: left;
+    }
+    .coaching-box h2 { font-size: 20px; color: #234d31; margin: 5px 0 10px; }
+    .coaching-box p { margin: 0 0 12px; }
+    .coaching-box ul { margin-bottom: 14px; }
+    .coaching-box .btn-call { background: #234d31; color: #fff; margin-bottom: 7px; }
+    .coaching-box .small-note { font-size: 12px; color: #627568; margin: 0; }
+    .other-service { font-size: 13px; border-top: 1px solid #e2e8e5; padding-top: 16px; margin-top: 20px; }
+    .other-service a { color: #234d31; font-weight: 600; }
+  
 
-    <!-- LINKE SEITE: Wechselnde Ansichten (Hauptansicht & Einzeltermine-Ansicht) -->
-    <div class="content-side">
-      
-      <!-- ANSICHT 1: HAUPTSEITE -->
-      <div id="view-main" class="view-section active">
-        <div class="slogan">Deine Hände können mehr als nur tippen</div>
-        <h1>Handstand 5-Wochen-Kurs</h1>
-        
-        <p>Hallo liebe Sportcommunity! 🤸‍♂️✨
+    /* Neues Layout: Kurs links, Personal Coaching rechts */
+    body { justify-content: flex-start; padding: 30px 18px; }
+    .card { max-width: 1200px; align-items: stretch; gap: 24px; padding: 24px; }
+    .content-side { flex: 1.18 1 0; min-width: 0; max-height: none; overflow: visible; padding: 0 24px 0 0; border-right: 1px solid #e5ece7; }
+    .coaching-side { flex: 0.82 1 0; min-width: 0; display: flex; flex-direction: column; gap: 18px; }
+    .coaching-side .coaching-box { margin: 0; }
+    .coaching-side .coaching-box h2 { font-size: 23px; }
+    .coaching-side .feedback-box { margin: 0; }
+    .coaching-side .btn-insta { margin: 0; }
+    .coaching-side .other-service { margin-top: 0; }
+    .coaching-visual { padding: 0 10px; }
+    .coaching-visual .video-container { max-width: 270px; height: 325px; margin: 0 auto; object-fit: cover; }
+    .course-map { margin: 16px 0 20px; }
+    .course-map .map-container { height: 175px; }
+    .content-side h1 { font-size: 26px; }
+    @media (max-width: 768px) {
+      .card { max-width: 520px; padding: 18px; gap: 22px; flex-direction: column; }
+      .content-side { width: 100%; padding: 0 0 22px; border-right: none; border-bottom: 1px solid #e5ece7; text-align: left; }
+      .coaching-side { width: 100%; }
+      .coaching-visual .video-container { height: 330px; }
+      .course-map .map-container { height: 190px; }
+    }
 
-Hand aufs Herz: Wer von euch träumt insgeheim auch davon, endlich mal frei und sicher auf den Händen zu stehen?
+    /* Gemeinsamer Bereich unterhalb der beiden Spalten */
+    .site-footer { width:100%; max-width:1200px; margin:20px auto 30px; padding:26px 30px; background:#fff; border-radius:20px; border-top:4px solid #234d31; box-shadow:0 8px 22px rgba(0,0,0,.06); box-sizing:border-box; }
+    .site-footer h2 { margin:4px 0 8px; font-size:22px; color:#234d31; }
+    .site-footer .footer-heading { text-align:center; max-width:650px; margin:0 auto 18px; }
+    .site-footer .footer-actions { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+    .site-footer .footer-actions .btn { margin:0; display:flex; align-items:center; justify-content:center; min-height:48px; }
+    .site-footer .feedback-note { text-align:center; margin:12px 0; }
+    .site-footer .other-service { text-align:center; margin-top:20px; line-height:1.6; }
+    .btn-whatsapp { background:#147d52; color:#fff; }
+    .coaching-box .btn-whatsapp { margin-top:6px; }
+.mobile-coaching-highlight { background:#f0f7f4; border:1px solid #cce3d6; border-radius:12px; padding:16px; margin:16px 0; }
+.mobile-coaching-highlight h3 { margin:0 0 9px; font-size:17px; color:#234d31; }
+.mobile-coaching-highlight p { margin-bottom:9px; }
+.mobile-coaching-highlight p:last-child { margin-bottom:0; }
+    @media (max-width:768px) { .site-footer { max-width:520px; padding:20px; } .site-footer .footer-actions { grid-template-columns:1fr; } }
 
-Ich kenne das Gefühl so gut: Ich habe selbst ewig gekämpft, mich frustriert gegen die Wand geworfen und gedacht, mir fehlt einfach die Kraft oder das Talent. Bis ich gemerkt habe: Es ist fast reine Technik und das richtige Gefühl für die Balance! Genau das möchte ich euch weitergeben – ohne Umwege, mit ganz viel Spaß und ohne diesen typischen Frust 😇🫶</p>
+/* Register-Navigation: nur ein Bereich sichtbar */
+body { display:block; padding:28px 16px; }
+.site-shell { max-width:1020px; margin:0 auto; }
+.site-header { margin-bottom:20px; text-align:center; }
+.site-header h1 { font-size:clamp(23px,3vw,33px); margin:6px 0; color:#1f3527; }
+.site-header p { margin:0 0 14px; }
+.tabs { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:8px; margin-bottom:0; }
+.tab-button { font:inherit; font-weight:700; font-size:14px; color:#234d31; background:#e8f0eb; border:1px solid #c8d9ce; border-bottom:0; padding:15px 8px; border-radius:12px 12px 0 0; cursor:pointer; }
+.tab-button:hover { background:#dbe9df; }
+.tab-button.active { color:white; background:#234d31; border-color:#234d31; }
+.tab-button:focus-visible { outline:3px solid #dc9d44; outline-offset:2px; }
+.tabs-content { padding:30px; background:white; border-radius:0 0 18px 18px; box-shadow:0 10px 30px rgba(0,0,0,.08); min-height:340px; }
+.tab-panel { display:none !important; width:100%; max-height:none; overflow:visible; border:0; padding:0; box-sizing:border-box; }
+.tab-panel.active { display:block !important; }
+.tab-panel h1 { font-size:25px; }
+#panel-kurse .view-section:not(.active) { display:none; }
+#panel-kurse .view-section.active { display:block; }
+#panel-coaching .coaching-box { margin:0 auto; max-width:720px; }
+#panel-coaching .coaching-visual { margin:18px auto 0; }
+#panel-rezensionen, #panel-kontakt { max-width:740px; margin:0 auto; }
+#panel-rezensionen .btn-feedback { max-width:520px; }
+#panel-kontakt .contact-actions { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+#panel-kontakt h2 { color:#234d31; font-size:20px; margin-top:22px; }
+#panel-kontakt .other-service { padding-top:15px; }
+@media(max-width:650px) {
+  .tabs { grid-template-columns:repeat(2,minmax(0,1fr)); gap:6px; }
+  .tab-button { border-radius:10px; border:1px solid #c8d9ce; padding:12px 6px; font-size:13px; }
+  .tabs-content { border-radius:12px; padding:20px 16px; }
+  #panel-kontakt .contact-actions { grid-template-columns:1fr; }
+}
+</style>
+<!-- GoatCounter Skript -->
+<script async="" data-goatcounter="https://handstand-dortmund.goatcounter.com/count" data-goatcounter-settings='{"no_onload": true}' src="//gc.zgo.at/count.js"></script>
+<style>
+/* Gut sichtbare Telefonnummer mit Kopierfunktion */
+.phone-copy-row { display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap; margin:4px 0 15px; padding:11px 14px; border:1px solid #cce3d6; border-radius:10px; background:#f3f8f5; }
+.phone-number { font-weight:700; letter-spacing:.2px; color:#234d31; font-size:17px; user-select:all; }
+.phone-copy-button { font:inherit; font-weight:600; border:1px solid #234d31; color:#234d31; background:white; border-radius:8px; padding:9px 12px; cursor:pointer; }
+.phone-copy-button:hover { background:#e5f1e9; }
+.phone-copy-button:focus-visible {outline:3px solid #dc9d44;outline-offset:2px;}
+</style></head>
+<body><main class="site-shell"><header class="site-header"><div class="slogan">Lilia Michailov Movement · Dortmund</div><h1>Handstandkurse &amp; Personal Coaching</h1><p>Deine Hände können mehr als nur tippen.</p></header><nav aria-label="Seitenbereiche" class="tabs" role="tablist"><button aria-controls="panel-kurse" aria-selected="true" class="tab-button active" id="tab-kurse" role="tab" tabindex="0" type="button">Aktuelle Kurse</button><button aria-controls="panel-coaching" aria-selected="false" class="tab-button" id="tab-coaching" role="tab" tabindex="-1" type="button">Personal Coaching</button><button aria-controls="panel-rezensionen" aria-selected="false" class="tab-button" id="tab-rezensionen" role="tab" tabindex="-1" type="button">Rezensionen</button><button aria-controls="panel-kontakt" aria-selected="false" class="tab-button" id="tab-kontakt" role="tab" tabindex="-1" type="button">Kontakt</button></nav><div class="tabs-content"><div aria-labelledby="tab-kurse" class="tab-panel active" id="panel-kurse" role="tabpanel" tabindex="0">
+<!-- ANSICHT 1: HAUPTSEITE -->
+<div class="view-section active" id="view-main">
+<div class="slogan">Deine Hände können mehr als nur tippen</div>
+<h1>Handstandkurs in Dortmund</h1>
+<p>Hallo liebe Sportcommunity! 🤸‍♀️
 
-        <!-- Null-Frust-Garantie -->
-        <div class="guarantee-box">
-          🛡️ <b>Null-Frust-Garantie:</b> Du musst nicht super stark sein oder Vorkenntnisse haben. Über 90 % unserer Teilnehmer starten bei Null und lernen hier zum ersten Mal, wie sich ein stabiler, sicherer Handstand wirklich fühlt.
-        </div>
+Du möchtest endlich deinen Handstand lernen oder deine Technik verbessern? In meinem Handstandkurs in Dortmund trainieren wir gemeinsam Balance, Körperspannung und das sichere Hochkicken.
 
-        <p><b>Was dich in den 5 Wochen erwartet (Dein Erfolg):</b></p>
-        <ul>
-          <li><b>✨ Das perfekte Fundament:</b> Keine wilde Wuchterei, sondern smarte Hebelwirkung und präzise Körperspannung.</li>
-          <li><b>🧠 Mentale Sicherheit:</b> Wir nehmen dir Schritt für Schritt die Angst vorm Umkippen – durch gezielte Partner-Hilfe und sichere Übungen.</li>
-          <li><b>🏆 Ein Skill fürs Leben:</b> Ein freier Handstand, der nicht nur auf Fotos und Videos beeindruckt, sondern dir unglaublich viel Körpergefühl schenkt!</li>
-        </ul>
-
-        <!-- Montags-Übung: kein zusätzlicher Präsenztermin -->
-        <div class="practice-box">
-          <b>🤸 Montags-Mini-Challenge: Schultern aktiv herausdrücken</b>
-          <p>Für zu Hause: Drücke im Vierfüßlerstand oder im gestreckten Stütz den Boden aktiv von dir weg – mit langen Armen und kontrollierter Schulterbewegung. Dieses Gefühl hilft dir später auch bei einem stabilen Handstand.</p>
-        </div>
-
-        <!-- Echtes Teilnehmer-Feedback -->
-        <div class="testimonial">
+Ob Anfänger oder Fortgeschrittene – du bekommst individuelle Tipps, passende Übungen und jede Menge Spaß beim Training. 😊</p>
+Individuelles Handstandtraining ohne Leistungsdruck
+<div class="guarantee-box"><b>🤸 Handstand lernen ohne Leistungsdruck.</b> Egal ob Anfänger oder Fortgeschrittene – du trainierst in deinem Tempo und bekommst individuelle Unterstützung.</div>
+<p><b>Das erwartet dich beim Training:</b></p>
+<ul>
+<li><b>✨ Das perfekte Fundament:</b> Keine wilde Wuchterei, sondern smarte Hebelwirkung und präzise Körperspannung.</li>
+<li><b>🧠 Mentale Sicherheit:</b> Wir nehmen dir Schritt für Schritt die Angst vorm Umkippen – durch gezielte Partner-Hilfe und sichere Übungen.</li>
+<li><b>🏆 Ein Skill fürs Leben:</b> Ein freier Handstand, der nicht nur auf Fotos und Videos beeindruckt, sondern dir unglaublich viel Körpergefühl schenkt!</li>
+</ul>
+<!-- Montags-Übung: kein zusätzlicher Präsenztermin -->
+<div class="practice-box"><b>🤸 Unsere bisherigen Technikthemen</b><p><strong>Sonntag, 8. November:</strong> Schultern aktiv rausdrücken – für einen stabilen Handstand.<br/><strong>Sonntag, 15. November:</strong> Handstandlinie verstehen – Körperspannung und eine gerade Körperlinie.</p></div>
+<!-- Echtes Teilnehmer-Feedback -->
+<div class="testimonial">
           „Ey danke nochmal für den Kurs gestern! Hab vorher echt gedacht, ich packs nie ohne Wand, aber mit den Tipps stand ich zum ersten Mal frei. Mega gut erklärt! 🙌“
         </div>
-
-        <p>🚀 <b>5-Wochen-Kurs Termine:</b> 08.11., 15.11., 22.11., 29.11. und 06.12.2026 (jeweils sonntags von 14:00 bis 15:30 Uhr)<br>
-        📍 <b>Wo:</b> <a href="https://maps.app.goo.gl/AfBfqszxrMUGMzLc8" target="_blank" rel="noopener noreferrer" style="color: #234d31; font-weight: bold; text-decoration: none;">Yoga Vidya Dortmund (An der Reinoldikirche 8)</a> – super zentral in der Innenstadt!</p>
-
-        <!-- 5-Wochen-Kurs Button (149 €) -->
-        <a href="https://backoffice.bsport.io/pass-express-checkout/3795/800182/paymentPack" 
-           id="btn-5weeks-neu"
-           class="btn btn-secondary" 
-           target="_blank" 
-           rel="noopener noreferrer">
-           🚀 Jetzt Platz sichern & Handstand lernen (149 €)
-           <span>Alle 5 Termine | Ziel: Freier Handstand bis Weihnachten 🎄</span>
-        </a>
-
-        <!-- Button für Einmaligen Termin -> Schaltet auf Ansicht 2 um -->
-        <button type="button" 
-                id="btn-show-single-view"
-                class="btn btn-single">
-           🎟️ Einmaligen Termin (1,5 Std.) mitmachen (30 €)
-           <span>Wähle hier deinen Lieblingstermin aus</span>
-        </button>
-
-        <!-- Mini-FAQ -->
-        <div class="faq-box">
-          <h4>Häufige Fragen kurz beantwortet:</h4>
-          • <b>Brauche ich spezielle Vorkenntnisse?</b> Nein, bequeme Sportkleidung reicht völlig aus!<br>
-          • <b>Was ist, wenn ich einen Termin verpasse?</b> Schreib mir einfach kurz, wir finden eine Lösung.<br>
+<p>🚀 <b>5-Wochen-Kurs Termine:</b> 08.11., 15.11., 22.11., 29.11. und 06.12.2026 (jeweils sonntags von 14:00 bis 15:30 Uhr)<br/>
+        📍 <b>Wo:</b> <a href="https://maps.app.goo.gl/AfBfqszxrMUGMzLc8" rel="noopener noreferrer" style="color: #234d31; font-weight: bold; text-decoration: none;" target="_blank">Yoga Vidya Dortmund (An der Reinoldikirche 8)</a> – super zentral in der Innenstadt!</p>
+<!-- 5-Wochen-Kurs Button (149 €) -->
+<div class="course-map"><a class="map-container" href="https://maps.app.goo.gl/AfBfqszxrMUGMzLc8" rel="noopener noreferrer" target="_blank">
+<iframe allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2482.899557438183!2d7.466547!3d51.514125!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47b919e27317b9df%3A0xf91a8893b6a5a41b!2sYoga%20Vidya%20Dortmund!5e0!3m2!1sde!2sde!4v1700000000000!5m2!1sde!2sde"></iframe>
+<span class="map-hint">📍 Route öffnen</span>
+</a></div>
+<!-- Button für Einmaligen Termin -> Schaltet auf Ansicht 2 um -->
+<button class="btn btn-single" id="btn-show-single-view" type="button">🎟️ Einzeltermin buchen (90 Min. · 30 €)<span>Wähle einen der noch verfügbaren Sonntage aus</span></button>
+<!-- NEU: Personal Coaching (direkte Anfrage ohne Plattform) -->
+<!-- Mini-FAQ -->
+<div class="faq-box">
+<h4>Häufige Fragen kurz beantwortet:</h4>
+          • <b>Brauche ich spezielle Vorkenntnisse?</b> Nein, bequeme Sportkleidung reicht völlig aus!<br/>
+          • <b>Du bist krank oder kannst einen bereits gebuchten Termin doch nicht wahrnehmen?</b> Schreib mir gerne direkt. Falls du jemanden findest, der deinen Platz übernehmen möchte, können wir die Buchung nach Absprache auf diese Person übertragen. <b>Ich unterstütze euch gerne dabei – wir finden gemeinsam eine unkomplizierte Lösung.</b><br/>
           • <b>Ist das sicher?</b> Ja, wir arbeiten methodisch und unterstützen uns gegenseitig.
         </div>
-
-        <!-- Hilfreicher Hinweis zum Bezahlen -->
-        <div class="help-box">
-          💡 <b>Probleme beim Bezahlen?</b> Schreib mir einfach direkt auf Instagram (<a href="https://instagram.com/lilia.milo" target="_blank" style="color: #79552d; font-weight: bold;">@lilia.milo</a>). Schick mir am besten deine Nummer, dann machen wir das gemeinsam – manchmal ist es ein bisschen tricky!
+<!-- Hilfreicher Hinweis zum Bezahlen -->
+<div class="help-box">
+          💡 <b>Probleme beim Bezahlen?</b> Schreib mir einfach direkt auf Instagram (<a href="https://instagram.com/lilia.milo" style="color: #79552d; font-weight: bold;" target="_blank">@lilia.milo</a>). Schick mir am besten deine Nummer, dann machen wir das gemeinsam – manchmal ist es ein bisschen tricky!
         </div>
-
-        <!-- Studio Link -->
-        <a href="https://www.yoga-vidya-dortmund.de/" 
-           id="btn-studio-neu"
-           class="btn btn-studio" 
-           target="_blank" 
-           rel="noopener noreferrer">🧘‍♀️ Yoga Vidya Dortmund Website</a>
-
-        <!-- Flyer Download -->
-        <a href="Flyer_handtand.pdf" 
-           id="btn-flyer-neu"
-           class="btn btn-flyer" 
-           target="_blank" 
-           rel="noopener noreferrer">📄 Offiziellen Kurs-Flyer ansehen (PDF)</a>
-
-        <!-- Instagram -->
-        <a href="https://instagram.com/lilia.milo" 
-           id="btn-insta-neu"
-           class="btn btn-insta" 
-           target="_blank">📸 @lilia.milo auf Instagram</a>
-
-        <!-- Feedback: öffnet das veröffentlichte Google-Formular. -->
-        <div class="feedback-box">
-          <b>💬 Du warst bei meinem Handstandkurs dabei?</b>
-          <p>Ich freue mich über deine Erfahrungen! Was hat dir besonders gut gefallen und was konntest du für dich mitnehmen? Dein Feedback bedeutet mir viel.</p>
-          <a href="https://docs.google.com/forms/d/e/1FAIpQLSel5oaMuVmbBAX7yR2OaC1IXZzAGmlhiIZtJ15H86F13bUTJQ/viewform?usp=publish-editor"
-             id="btn-feedback"
-             class="btn btn-feedback"
-             target="_blank"
-             rel="noopener noreferrer">⭐ Jetzt Kurs-Feedback geben
-             <span>4 kurze Fragen · ca. 1 Minute · freiwillig</span>
-          </a>
-          <p class="feedback-note">Mit deiner Erlaubnis darf ich dein Feedback anonym teilen. Danke fürs Mitmachen!</p>
-        </div>
-
-        <p style="margin-top: 15px; font-size: 13px; text-align: center;">Ich freue mich riesig auf euch! Bei Fragen meldet euch einfach jederzeit bei mir 📲</p>
-      </div>
-
-      <!-- ANSICHT 2: EINZELTERMINE AUSWAHL -->
-      <div id="view-single-dates" class="view-section">
-        <button type="button" id="btn-back-to-main" class="btn btn-back">
+<!-- Studio Link -->
+<a class="btn btn-studio" href="https://www.yoga-vidya-dortmund.de/" id="btn-studio-neu" rel="noopener noreferrer" target="_blank">🧘‍♀️ Yoga Vidya Dortmund Website</a>
+<!-- Flyer Download -->
+<a class="btn btn-flyer" href="Flyer_handtand.pdf" id="btn-flyer-neu" rel="noopener noreferrer" target="_blank">📄 Offiziellen Kurs-Flyer ansehen (PDF)</a>
+<!-- Instagram -->
+<!-- Öffentliche Google-Bewertungen und optionales privates Feedback -->
+<!-- Zweites Angebot: IT-Support -->
+<p style="margin-top: 15px; font-size: 13px; text-align: center;">Ich freue mich riesig auf euch! Bei Fragen meldet euch einfach jederzeit bei mir 📲</p>
+</div>
+<!-- ANSICHT 2: EINZELTERMINE AUSWAHL -->
+<div class="view-section" id="view-single-dates">
+<button class="btn btn-back" id="btn-back-to-main" type="button">
           ← Zurück zur Übersicht
         </button>
-
-        <div class="slogan">Flexibel mitmachen</div>
-        <h1>Wähle deinen Einzeltermin</h1>
-        <p>Du möchtest an einem bestimmten Datum schnuppern oder bist an den anderen Sonntagen verhindert? Wähle hier deinen Wunschtermin für <b>30 €</b> aus:</p>
-
-        <!-- Termin 1 -->
-        <div class="single-date-card">
-          <div class="single-date-info">Sonntag, 8. November 2026 • 14:00 - 15:30 Uhr</div>
-          <a href="https://backoffice.bsport.io/booker-module-s/3795/44146115?membership=3795" 
-             class="single-date-btn track-single-link" 
-             data-track-id="single-08-nov"
-             target="_blank" 
-             rel="noopener noreferrer">
-             📅 Termin 1 buchen (30 €)
-          </a>
-        </div>
-
-        <!-- Termin 2 -->
-        <div class="single-date-card">
-          <div class="single-date-info">Sonntag, 15. November 2026 • 14:00 - 15:30 Uhr</div>
-          <a href="https://backoffice.bsport.io/customer/payment/offer/44146347?membership=3795" 
-             class="single-date-btn track-single-link" 
-             data-track-id="single-15-nov"
-             target="_blank" 
-             rel="noopener noreferrer">
-             📅 Termin 2 buchen (30 €)
-          </a>
-        </div>
-
-        <!-- Termin 3 -->
-        <div class="single-date-card">
-          <div class="single-date-info">Sonntag, 22. November 2026 • 14:00 - 15:30 Uhr</div>
-          <a href="https://backoffice.bsport.io/customer/payment/offer/44146451?membership=3795" 
-             class="single-date-btn track-single-link" 
-             data-track-id="single-22-nov"
-             target="_blank" 
-             rel="noopener noreferrer">
+<div class="slogan">Flexibel mitmachen</div>
+<h1>Wähle deinen Einzeltermin</h1>
+<p>Du möchtest an einem bestimmten Datum schnuppern oder bist an den anderen Sonntagen verhindert? Wähle hier deinen Wunschtermin für <b>30 €</b> aus:</p>
+<!-- Termin 1: bereits vorbei, nicht mehr buchbar -->
+<div class="single-date-card past-date">
+<div class="single-date-info">Sonntag, 8. November 2026 • 14:00 - 15:30 Uhr<br/><small>Technikthema: Schultern aktiv rausdrücken</small></div>
+<span aria-label="Termin 1 nicht mehr verfügbar" class="single-date-unavailable">✓ Bereits stattgefunden – nicht mehr verfügbar</span>
+</div>
+<!-- Termin 2: bereits vorbei, nicht mehr buchbar -->
+<div class="single-date-card past-date">
+<div class="single-date-info">Sonntag, 15. November 2026 • 14:00 - 15:30 Uhr<br/><small>Technikthema: Handstandlinie verstehen</small></div>
+<span aria-label="Termin 2 nicht mehr verfügbar" class="single-date-unavailable">✓ Bereits stattgefunden – nicht mehr verfügbar</span>
+</div>
+<!-- Termin 3 -->
+<div class="single-date-card">
+<div class="single-date-info">Sonntag, 22. November 2026 • 14:00 - 15:30 Uhr</div>
+<a class="single-date-btn track-single-link" data-track-id="single-22-nov" href="https://backoffice.bsport.io/customer/payment/offer/44146451?membership=3795" rel="noopener noreferrer" target="_blank">
              📅 Termin 3 buchen (30 €)
           </a>
-        </div>
-
-        <!-- Termin 4 -->
-        <div class="single-date-card">
-          <div class="single-date-info">Sonntag, 29. November 2026 • 14:00 - 15:30 Uhr</div>
-          <a href="https://backoffice.bsport.io/customer/payment/offer/44214833?membership=3795" 
-             class="single-date-btn track-single-link" 
-             data-track-id="single-29-nov"
-             target="_blank" 
-             rel="noopener noreferrer">
+</div>
+<!-- Termin 4 -->
+<div class="single-date-card">
+<div class="single-date-info">Sonntag, 29. November 2026 • 14:00 - 15:30 Uhr</div>
+<a class="single-date-btn track-single-link" data-track-id="single-29-nov" href="https://backoffice.bsport.io/customer/payment/offer/44214833?membership=3795" rel="noopener noreferrer" target="_blank">
              📅 Termin 4 buchen (30 €)
           </a>
-        </div>
-
-        <!-- Termin 5 -->
-        <div class="single-date-card">
-          <div class="single-date-info">Sonntag, 6. Dezember 2026 • 14:00 - 15:30 Uhr</div>
-          <a href="https://backoffice.bsport.io/customer/payment/offer/44214941?membership=3795" 
-             class="single-date-btn track-single-link" 
-             data-track-id="single-06-dez"
-             target="_blank" 
-             rel="noopener noreferrer">
+</div>
+<!-- Termin 5 -->
+<div class="single-date-card">
+<div class="single-date-info">Sonntag, 6. Dezember 2026 • 14:00 - 15:30 Uhr</div>
+<a class="single-date-btn track-single-link" data-track-id="single-06-dez" href="https://backoffice.bsport.io/customer/payment/offer/44214941?membership=3795" rel="noopener noreferrer" target="_blank">
              📅 Termin 5 buchen (30 €)
           </a>
-        </div>
-
-        <div class="help-box" style="margin-top: 25px;">
+</div>
+<div class="help-box" style="margin-top: 25px;">
           💡 <b>Hinweis:</b> Nach der Buchung eines Einzeltermins erhältst du alle Infos direkt per E-Mail für den jeweiligen Sonntag. Bei Fragen melde dich jederzeit bei mir!
         </div>
-      </div>
-
-    </div>
-
-  </div>
-
-  <script>
+</div>
+</div><aside aria-label="Personal Coaching und Kontakt" aria-labelledby="tab-coaching" class="tab-panel" id="panel-coaching" role="tabpanel" tabindex="0"><section aria-labelledby="coaching-title" class="coaching-box">
+<div class="slogan">Individuell statt Gruppe</div>
+<h2 id="coaching-title">🤸‍♀️ Handstand Personal Coaching</h2>
+<p><b>Dein Handstand. Dein Tempo. Dein Training.</b></p>
+<p>Du möchtest deinen ersten Handstand lernen oder gezielt an deinem Kick-up, deiner Balance oder deiner Handstandlinie arbeiten? Im Einzelcoaching nehmen wir uns Zeit für deine Ziele und passen die Übungen an dein Level an.</p>
+<ul>
+<li>Für Anfänger und Fortgeschrittene</li>
+<li>Individuelle Technik, Körperspannung und persönliche Korrekturen</li>
+<li>Training in Dortmund oder mobil bei dir vor Ort</li>
+</ul>
+<div class="mobile-coaching-highlight">
+<h3>🏡 Das Besondere: Mobiles Personal Coaching</h3>
+<p>Du musst nicht extra irgendwo hinfahren oder deine Sportsachen für ein Studio packen. Ich komme auf Wunsch zu dir und bringe das benötigte Trainingsmaterial mit. Ideal wäre eine freie, stabile Wand mit genügend Platz davor, an der wir sicher Handstand üben können.</p>
+<p>Keine geeignete Trainingsmöglichkeit zu Hause? Kein Problem. Dann schauen wir gemeinsam nach einem passenden Trainingsraum.</p>
+</div>
+<p><b>Termine, Trainingsort und Preis besprechen wir persönlich.</b></p>
+<p>Du kannst mir ganz unkompliziert eine Anfrage schicken. Der Text ist bereits vorbereitet – du musst ihn nur noch absenden. Ich melde mich dann bei dir zurück. 😊</p>
+<a class="btn btn-call" href="mailto:lilia.handstand@outlook.de?subject=Anfrage%20Handstand%20Personal%20Coaching&amp;body=Hallo%20Lilia%2C%20ich%20interessiere%20mich%20f%C3%BCr%20ein%20Handstand%20Personal%20Coaching.%20Bitte%20melde%20dich%20bei%20mir%2C%20damit%20wir%20einen%20Termin%20und%20den%20Trainingsort%20besprechen%20k%C3%B6nnen.%20Liebe%20Gr%C3%BC%C3%9Fe" id="btn-coaching-email">✉️ Anfrage per E-Mail vorbereiten</a>
+<a class="btn btn-whatsapp" href="https://wa.me/4915561566419?text=Hallo%20Lilia%2C%20ich%20interessiere%20mich%20f%C3%BCr%20ein%20Handstand%20Personal%20Coaching.%20Bitte%20melde%20dich%20bei%20mir%2C%20damit%20wir%20einen%20Termin%20und%20den%20Trainingsort%20besprechen%20k%C3%B6nnen.%20Liebe%20Gr%C3%BC%C3%9Fe" id="btn-coaching-whatsapp" rel="noopener noreferrer" target="_blank">💬 Anfrage per WhatsApp vorbereiten</a>
+<a class="btn btn-insta" data-mobile-dm="https://ig.me/m/lilia.milo" href="https://www.instagram.com/lilia.milo/" id="btn-coaching-instagram" rel="noopener noreferrer" target="_blank">📸 Per Instagram-Nachricht anfragen</a><p class="small-note">E-Mail und WhatsApp öffnen eine vorbereitete Nachricht, die du selbst abschickst. Mobiles Training nach Absprache, gegebenenfalls mit Anfahrtskosten.</p>
+<a class="btn btn-flyer" href="tel:+4915561566419" id="btn-coaching-call">📞 Lieber anrufen · 01556 1566419</a><div class="phone-copy-row"><span class="phone-number">01556 1566419</span><button aria-label="Telefonnummer in die Zwischenablage kopieren" class="phone-copy-button" data-copy-phone="01556 1566419" type="button">📋 Nummer kopieren</button></div>
+<p class="small-note">Bei E-Mail und WhatsApp öffnet sich die jeweilige App mit einer vorbereiteten Nachricht. Bitte selbst auf „Senden“ tippen. Instagram öffnet mein Profil; dort kannst du mir eine Direktnachricht schreiben. Mobiles Training nach Absprache, gegebenenfalls mit Anfahrtskosten.</p>
+</section><div class="coaching-visual"><video autoplay="" class="video-container" loop="" muted="" playsinline="" src="video_barren.mp4"></video></div></aside><section aria-labelledby="tab-rezensionen" class="tab-panel" id="panel-rezensionen" role="tabpanel" tabindex="0"><div class="slogan">Deine Erfahrungen zählen</div><h1>Google-Rezensionen</h1><p>Du warst bei meinem Handstandkurs oder Personal Coaching dabei? Ich freue mich über eine ehrliche öffentliche Google-Bewertung. So können auch andere mein Handstandtraining in Dortmund entdecken.</p><a class="btn btn-feedback" href="https://g.page/r/Cf62R8plx75QEBI/review" id="btn-google-review" rel="noopener noreferrer" target="_blank">⭐ Öffentliche Google-Rezension schreiben
+             <span>Deine Bewertung erscheint auf meinem Google-Unternehmensprofil</span>
+</a><p class="feedback-note">Deine Bewertung ist freiwillig und wird, sofern Google sie freigibt, öffentlich auf meinem Google-Unternehmensprofil angezeigt.</p><a class="btn btn-flyer" href="https://share.google/iEvBsJ3BdTYYFrSab" id="btn-google-profil" rel="noopener noreferrer" target="_blank">⭐ Vorhandene Bewertungen bei Google ansehen</a></section><section aria-labelledby="tab-kontakt" class="tab-panel" id="panel-kontakt" role="tabpanel" tabindex="0"><div class="slogan">Schreib mir einfach</div><h1>Kontakt</h1><p>Du hast Fragen zu einem Handstandkurs, möchtest Personal Coaching vereinbaren oder einen mobilen Termin in Dortmund anfragen? Ich freue mich, von dir zu hören.</p><div class="contact-actions"><a class="btn btn-secondary" href="tel:+4915561566419" id="btn-contact-call">📞 01556 1566419 anrufen</a><div class="phone-copy-row"><span class="phone-number">01556 1566419</span><button aria-label="Telefonnummer in die Zwischenablage kopieren" class="phone-copy-button" data-copy-phone="01556 1566419" type="button">📋 Nummer kopieren</button></div><a class="btn btn-whatsapp" href="https://wa.me/4915561566419?text=Hallo%20Lilia%2C%20ich%20habe%20eine%20Frage%20zum%20Handstandtraining." id="btn-contact-whatsapp" rel="noopener noreferrer" target="_blank">💬 Per WhatsApp schreiben</a><a class="btn btn-flyer" href="mailto:lilia.handstand@outlook.de?subject=Anfrage%20Handstandtraining" id="btn-contact-email">✉️ lilia.handstand@outlook.de</a></div><h2>Instagram</h2><p>Weitere Einblicke in meine Kurse und mein Training:</p><a class="btn btn-insta" href="https://instagram.com/lilia.milo" id="btn-insta-neu" target="_blank">📸 @lilia.milo auf Instagram</a><div class="other-service"><h2>Auch IT-Support in Dortmund</h2><p>Neben meinen Handstandangeboten unterstütze ich bei PC, Outlook und anderen Technikfragen.</p><a href="https://lmichailov.github.io/it-support/" id="btn-it-support" rel="noopener noreferrer" target="_blank">Mehr über meinen IT-Support erfahren ↗</a></div></section></div></main>
+<script>
     window.addEventListener('load', function() {
       if (window.goatcounter && window.goatcounter.count) {
         window.goatcounter.count({ path: '/handstand_qrcode_v14', title: 'QR-Code Aufruf (V14)', event: false });
       }
 
-      // Erfasst nur den Klick auf den Feedback-Button; die Antworten bleiben bei Google Forms.
-      document.getElementById('btn-feedback').addEventListener('click', function() {
+      // Öffentliche Google-Rezensionen.
+      document.getElementById('btn-google-review').addEventListener('click', function() {
         if (window.goatcounter && window.goatcounter.count) {
-          window.goatcounter.count({ path: '/klick-feedback-v15', title: 'Klick: Kurs-Feedback (V15)', event: true });
+          window.goatcounter.count({ path: '/klick-google-rezension', title: 'Klick: Öffentliche Google-Rezension', event: true });
         }
       });
 
@@ -587,14 +615,18 @@ Ich kenne das Gefühl so gut: Ich habe selbst ewig gekämpft, mich frustriert ge
         document.querySelector('.content-side').scrollTop = 0;
       });
 
-      // Tracking für 5-Wochen-Kurs
-      document.getElementById('btn-5weeks-neu').addEventListener('click', function() {
-        if (!localStorage.getItem('counted_5weeks_v14')) {
-          localStorage.setItem('counted_5weeks_v14', 'true');
+      // Zusätzliche Klicks auf die neuen Angebote (GoatCounter, falls verfügbar)
+      [['btn-coaching-email', '/klick-personal-coaching-email', 'Klick: E-Mail Personal Coaching'],
+       ['btn-coaching-instagram', '/klick-personal-coaching-instagram', 'Klick: Instagram Personal Coaching'],
+       ['btn-coaching-whatsapp', '/klick-personal-coaching-whatsapp', 'Klick: WhatsApp Personal Coaching'],
+       ['btn-coaching-call', '/klick-personal-coaching-anruf', 'Klick: Personal Coaching anrufen'],
+       ['btn-it-support', '/klick-it-support', 'Klick: IT-Support']].forEach(function(item) {
+        const element = document.getElementById(item[0]);
+        if (element) element.addEventListener('click', function() {
           if (window.goatcounter && window.goatcounter.count) {
-            window.goatcounter.count({ path: '/klick-5wochen-v14', title: 'Klick: 5 Wochen Kurs (V14)', event: false });
+            window.goatcounter.count({ path: item[1], title: item[2], event: true });
           }
-        }
+        });
       });
 
       // Tracking für die einzelnen Termin-Links
@@ -643,5 +675,65 @@ Ich kenne das Gefühl so gut: Ich habe selbst ewig gekämpft, mich frustriert ge
       });
     });
   </script>
-</body>
+<script>
+(function(){
+ const tabs=Array.from(document.querySelectorAll('[role="tab"]'));
+ const panels=Array.from(document.querySelectorAll('[role="tabpanel"]'));
+ function selectTab(tab,focus){
+   tabs.forEach(t=>{const on=t===tab;t.classList.toggle('active',on);t.setAttribute('aria-selected',String(on));t.tabIndex=on?0:-1;});
+   panels.forEach(p=>p.classList.toggle('active',p.id===tab.getAttribute('aria-controls')));
+   if(focus)tab.focus();
+ }
+ tabs.forEach((tab,i)=>{
+   tab.addEventListener('click',()=>selectTab(tab,false));
+   tab.addEventListener('keydown',e=>{
+     let ix=i;
+     if(e.key==='ArrowRight')ix=(i+1)%tabs.length;
+     else if(e.key==='ArrowLeft')ix=(i-1+tabs.length)%tabs.length;
+     else if(e.key==='Home')ix=0;
+     else if(e.key==='End')ix=tabs.length-1;
+     else return;
+     e.preventDefault();selectTab(tabs[ix],true);
+   });
+ });
+})();
+</script><script>window.addEventListener('load', function(){
+  [['btn-contact-call','/klick-kontakt-anruf','Klick: Kontakt Anruf'],['btn-contact-whatsapp','/klick-kontakt-whatsapp','Klick: Kontakt WhatsApp']].forEach(function(info){
+    const el=document.getElementById(info[0]); if(!el) return;
+    el.addEventListener('click',function(){if(window.goatcounter&&window.goatcounter.count) window.goatcounter.count({path:info[1],title:info[2],event:true});});
+  });
+});</script><script>
+document.addEventListener('DOMContentLoaded', function () {
+  document.querySelectorAll('[data-mobile-dm]').forEach(function(link) {
+    link.addEventListener('click', function(event) {
+      const mobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+      if (mobile) {
+        event.preventDefault();
+        window.open(link.getAttribute('data-mobile-dm'), '_blank', 'noopener,noreferrer');
+      }
+    });
+  });
+  document.querySelectorAll('[data-copy-phone]').forEach(function(button) {
+    button.addEventListener('click', async function() {
+      const number = button.getAttribute('data-copy-phone');
+      let copied = false;
+      try {
+        if (navigator.clipboard && window.isSecureContext) {
+          await navigator.clipboard.writeText(number); copied = true;
+        }
+      } catch(e) {}
+      if (!copied) {
+        const temp = document.createElement('textarea');
+        temp.value = number; temp.setAttribute('readonly','');
+        temp.style.position='fixed'; temp.style.opacity='0';
+        document.body.appendChild(temp); temp.select();
+        try { copied = document.execCommand('copy'); } catch(e) {}
+        temp.remove();
+      }
+      button.textContent = copied ? '✓ Kopiert' : 'Bitte Nummer markieren';
+      button.setAttribute('aria-label', copied ? 'Telefonnummer kopiert' : 'Telefonnummer manuell markieren');
+    });
+  });
+});
+</script></body>
 </html>
