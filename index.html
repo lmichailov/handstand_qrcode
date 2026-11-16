@@ -577,6 +577,54 @@ Individuelles Handstandtraining ohne Leistungsdruck
              <span>Deine Bewertung erscheint auf meinem Google-Unternehmensprofil</span>
 </a><p class="feedback-note">Deine Bewertung ist freiwillig und wird, sofern Google sie freigibt, öffentlich auf meinem Google-Unternehmensprofil angezeigt.</p><a class="btn btn-flyer" href="https://share.google/iEvBsJ3BdTYYFrSab" id="btn-google-profil" rel="noopener noreferrer" target="_blank">⭐ Vorhandene Bewertungen bei Google ansehen</a></section><section aria-labelledby="tab-kontakt" class="tab-panel" id="panel-kontakt" role="tabpanel" tabindex="0"><div class="slogan">Schreib mir einfach</div><h1>Kontakt</h1><p>Du hast Fragen zu einem Handstandkurs, möchtest Personal Coaching vereinbaren oder einen mobilen Termin in Dortmund anfragen? Ich freue mich, von dir zu hören.</p><div class="contact-actions"><a class="btn btn-secondary" href="tel:+4915561566419" id="btn-contact-call">📞 01556 1566419 anrufen</a><div class="phone-copy-row"><span class="phone-number">01556 1566419</span><button aria-label="Telefonnummer in die Zwischenablage kopieren" class="phone-copy-button" data-copy-phone="01556 1566419" type="button">📋 Nummer kopieren</button></div><a class="btn btn-whatsapp" href="https://wa.me/4915561566419?text=Hallo%20Lilia%2C%20ich%20habe%20eine%20Frage%20zum%20Handstandtraining." id="btn-contact-whatsapp" rel="noopener noreferrer" target="_blank">💬 Per WhatsApp schreiben</a><a class="btn btn-flyer" href="mailto:lilia.handstand@outlook.de?subject=Anfrage%20Handstandtraining" id="btn-contact-email">✉️ lilia.handstand@outlook.de</a></div><h2>Instagram</h2><p>Weitere Einblicke in meine Kurse und mein Training:</p><a class="btn btn-insta" href="https://instagram.com/lilia.milo" id="btn-insta-neu" target="_blank">📸 @lilia.milo auf Instagram</a><div class="other-service"><h2>Auch IT-Support in Dortmund</h2><p>Neben meinen Handstandangeboten unterstütze ich bei PC, Outlook und anderen Technikfragen.</p><a href="https://lmichailov.github.io/it-support/" id="btn-it-support" rel="noopener noreferrer" target="_blank">Mehr über meinen IT-Support erfahren ↗</a></div></section></div></main>
 <script>
+    // Ein zentraler Listener verhindert doppelte Meldungen pro Klick.
+    const clickLabels = {
+      'tab-kurse': ['bereich-kurse', 'Bereich: Aktuelle Kurse geöffnet'],
+      'tab-coaching': ['bereich-personal-coaching', 'Bereich: Personal Coaching geöffnet'],
+      'tab-rezensionen': ['bereich-rezensionen', 'Bereich: Rezensionen geöffnet'],
+      'tab-kontakt': ['bereich-kontakt', 'Bereich: Kontakt geöffnet'],
+      'btn-show-single-view': ['klick-einzeltermine-ansicht-v14', 'Einzeltermine: Auswahl geöffnet'],
+      'btn-back-to-main': ['klick-einzeltermine-zurueck', 'Einzeltermine: Zurück zur Übersicht'],
+      'btn-coaching-email': ['klick-personal-coaching-email', 'Personal Coaching: E-Mail angeklickt'],
+      'btn-coaching-whatsapp': ['klick-personal-coaching-whatsapp', 'Personal Coaching: WhatsApp angeklickt'],
+      'btn-coaching-instagram': ['klick-personal-coaching-instagram', 'Personal Coaching: Instagram angeklickt'],
+      'btn-coaching-call': ['klick-personal-coaching-anruf', 'Personal Coaching: Anrufen angeklickt'],
+      'btn-google-review': ['klick-google-rezension', 'Rezensionen: Google-Bewertung schreiben angeklickt'],
+      'btn-google-profil': ['klick-google-profil', 'Rezensionen: Google-Bewertungen ansehen angeklickt'],
+      'btn-contact-call': ['klick-kontakt-anruf', 'Kontakt: Anrufen angeklickt'],
+      'btn-contact-whatsapp': ['klick-kontakt-whatsapp', 'Kontakt: WhatsApp angeklickt'],
+      'btn-contact-email': ['klick-kontakt-email', 'Kontakt: E-Mail angeklickt'],
+      'btn-insta-neu': ['klick-instagram-v14', 'Kontakt: Instagram-Profil angeklickt'],
+      'btn-it-support': ['klick-it-support', 'Kontakt: IT-Support angeklickt'],
+      'btn-studio-neu': ['klick-studio-v14', 'Kurs: Yoga-Vidya-Webseite angeklickt'],
+      'btn-flyer-neu': ['klick-flyer-v14', 'Kurs: Flyer-PDF angeklickt']
+    };
+    const singleDateLabels = {
+      'single-22-nov': '22. November 2026',
+      'single-29-nov': '29. November 2026',
+      'single-06-dez': '6. Dezember 2026'
+    };
+    document.addEventListener('click', function(event) {
+      const element = event.target.closest('a, button');
+      if (!element) return;
+      let label = Object.prototype.hasOwnProperty.call(clickLabels, element.id) ? clickLabels[element.id] : null;
+      if (element.matches('.track-single-link')) {
+        const dateId = element.getAttribute('data-track-id');
+        if (Object.prototype.hasOwnProperty.call(singleDateLabels, dateId)) {
+          label = ['klick-einzeltermin-' + dateId + '-v14', 'Einzeltermin: ' + singleDateLabels[dateId] + ' - Buchung angeklickt'];
+        }
+      } else if (element.matches('[data-copy-phone]')) {
+        const coaching = Boolean(element.closest('#panel-coaching'));
+        label = ['klick-' + (coaching ? 'coaching' : 'kontakt') + '-telefon-kopieren', (coaching ? 'Personal Coaching' : 'Kontakt') + ': Telefonnummer kopieren angeklickt'];
+      } else if (!label) {
+        const href = element.getAttribute('href') || '';
+        if (href.startsWith('https://maps.app.goo.gl/')) label = ['klick-kurs-route', 'Kurs: Standort / Route angeklickt'];
+        else if (href === 'https://instagram.com/lilia.milo' && element.closest('#panel-kurse')) label = ['klick-kurs-instagram-hilfe', 'Kurs: Instagram-Hilfe beim Bezahlen angeklickt'];
+      }
+      if (label && window.goatcounter && window.goatcounter.count) {
+        window.goatcounter.count({path: label[0], title: label[1], event: true, no_session: true});
+      }
+    });
     window.addEventListener('load', function() {
       if (window.goatcounter && window.goatcounter.count) {
         window.goatcounter.count({ path: '/handstand_qrcode_v14', title: 'QR-Code Aufruf (V14)', event: false });
@@ -591,91 +639,18 @@ Individuelles Handstandtraining ohne Leistungsdruck
         });
       }
 
-      // Öffentliche Google-Rezensionen.
-      document.getElementById('btn-google-review').addEventListener('click', function() {
-        if (window.goatcounter && window.goatcounter.count) {
-          window.goatcounter.count({ path: '/klick-google-rezension', title: 'Klick: Öffentliche Google-Rezension', event: true });
-        }
-      });
-
-      // Ansichten-Wechsel Logik
       const viewMain = document.getElementById('view-main');
       const viewSingleDates = document.getElementById('view-single-dates');
-      const btnShowSingle = document.getElementById('btn-show-single-view');
-      const btnBackToMain = document.getElementById('btn-back-to-main');
-
-      btnShowSingle.addEventListener('click', function() {
+      document.getElementById('btn-show-single-view').addEventListener('click', function() {
         viewMain.classList.remove('active');
         viewSingleDates.classList.add('active');
-        // Nach oben scrollen innerhalb der Box
-        document.querySelector('.content-side').scrollTop = 0;
-
-        if (window.goatcounter && window.goatcounter.count) {
-          window.goatcounter.count({ path: 'klick-einzeltermine-ansicht-v14', title: 'Ansicht: Einzeltermine geöffnet (V14)', event: true, no_session: true });
-        }
       });
-
-      btnBackToMain.addEventListener('click', function() {
+      document.getElementById('btn-back-to-main').addEventListener('click', function() {
         viewSingleDates.classList.remove('active');
         viewMain.classList.add('active');
-        document.querySelector('.content-side').scrollTop = 0;
-      });
-
-      // Zusätzliche Klicks auf die neuen Angebote (GoatCounter, falls verfügbar)
-      [['btn-coaching-email', '/klick-personal-coaching-email', 'Klick: E-Mail Personal Coaching'],
-       ['btn-coaching-instagram', '/klick-personal-coaching-instagram', 'Klick: Instagram Personal Coaching'],
-       ['btn-coaching-whatsapp', '/klick-personal-coaching-whatsapp', 'Klick: WhatsApp Personal Coaching'],
-       ['btn-coaching-call', '/klick-personal-coaching-anruf', 'Klick: Personal Coaching anrufen'],
-       ['btn-it-support', '/klick-it-support', 'Klick: IT-Support']].forEach(function(item) {
-        const element = document.getElementById(item[0]);
-        if (element) element.addEventListener('click', function() {
-          if (window.goatcounter && window.goatcounter.count) {
-            window.goatcounter.count({ path: item[1], title: item[2], event: true });
-          }
-        });
-      });
-
-      // Tracking für die einzelnen Termin-Links
-      document.querySelectorAll('.track-single-link').forEach(function(link) {
-        link.addEventListener('click', function() {
-          const trackId = this.getAttribute('data-track-id');
-          if (window.goatcounter && window.goatcounter.count) {
-            window.goatcounter.count({ path: 'klick-einzeltermin-' + trackId + '-v14', title: 'Klick: Einzeltermin ' + trackId + ' (V14)', event: true, no_session: true });
-          }
-        });
-      });
-
-      // Tracking Studio
-      document.getElementById('btn-studio-neu').addEventListener('click', function() {
-        if (!localStorage.getItem('counted_studio_v14')) {
-          localStorage.setItem('counted_studio_v14', 'true');
-          if (window.goatcounter && window.goatcounter.count) {
-            window.goatcounter.count({ path: '/klick-studio-v14', title: 'Klick: Yoga Vidya Studio (V14)', event: false });
-          }
-        }
-      });
-
-      // Tracking Flyer
-      document.getElementById('btn-flyer-neu').addEventListener('click', function() {
-        if (!localStorage.getItem('counted_flyer_v14')) {
-          localStorage.setItem('counted_flyer_v14', 'true');
-          if (window.goatcounter && window.goatcounter.count) {
-            window.goatcounter.count({ path: '/klick-flyer-v14', title: 'Klick: Flyer PDF (V14)', event: false });
-          }
-        }
-      });
-
-      // Tracking Instagram
-      document.getElementById('btn-insta-neu').addEventListener('click', function() {
-        if (!localStorage.getItem('counted_insta_v14')) {
-          localStorage.setItem('counted_insta_v14', 'true');
-          if (window.goatcounter && window.goatcounter.count) {
-            window.goatcounter.count({ path: '/klick-instagram-v14', title: 'Klick: Instagram (V14)', event: false });
-          }
-        }
       });
     });
-  </script>
+</script>
 <script>
 (function(){
  const tabs=Array.from(document.querySelectorAll('[role="tab"]'));
@@ -698,12 +673,7 @@ Individuelles Handstandtraining ohne Leistungsdruck
    });
  });
 })();
-</script><script>window.addEventListener('load', function(){
-  [['btn-contact-call','/klick-kontakt-anruf','Klick: Kontakt Anruf'],['btn-contact-whatsapp','/klick-kontakt-whatsapp','Klick: Kontakt WhatsApp']].forEach(function(info){
-    const el=document.getElementById(info[0]); if(!el) return;
-    el.addEventListener('click',function(){if(window.goatcounter&&window.goatcounter.count) window.goatcounter.count({path:info[1],title:info[2],event:true});});
-  });
-});</script><script>
+</script><script>
 document.addEventListener('DOMContentLoaded', function () {
   document.querySelectorAll('[data-mobile-dm]').forEach(function(link) {
     link.addEventListener('click', function(event) {
