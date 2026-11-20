@@ -419,7 +419,7 @@ body { display:block; padding:28px 16px; }
 .site-header { margin-bottom:20px; text-align:center; }
 .site-header h1 { font-size:clamp(23px,3vw,33px); margin:6px 0; color:#1f3527; }
 .site-header p { margin:0 0 14px; }
-.tabs { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:8px; margin-bottom:0; }
+.tabs { display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); gap:8px; margin-bottom:0; }
 .tab-button { font:inherit; font-weight:700; font-size:14px; color:#234d31; background:#e8f0eb; border:1px solid #c8d9ce; border-bottom:0; padding:15px 8px; border-radius:12px 12px 0 0; cursor:pointer; }
 .tab-button:hover { background:#dbe9df; }
 .tab-button.active { color:white; background:#234d31; border-color:#234d31; }
@@ -443,6 +443,26 @@ body { display:block; padding:28px 16px; }
   .tabs-content { border-radius:12px; padding:20px 16px; }
   #panel-kontakt .contact-actions { grid-template-columns:1fr; }
 }
+#panel-online { max-width:740px; margin:0 auto; }
+#panel-online h2 { color:#234d31; font-size:20px; }
+.online-subtitle { font-weight:700; color:#234d31; }
+.online-benefits { padding-inline-start:1.4em; line-height:1.6; }
+.online-offer, .online-video, .online-contact { background:#e8f0eb; border:1px solid #c8d9ce; border-radius:12px; padding:16px; margin:18px 0; }
+.online-offer h2, .online-video h2, .online-contact h2 { margin-top:0; }
+#panel-online .btn { white-space:normal; font-family:inherit; margin-bottom:0; }
+#panel-online .btn:disabled { background:#dbe5de; color:#3c5042; cursor:default; }
+.online-asset { margin:20px 0; }
+.online-asset img { display:block; width:100%; max-width:540px; height:auto; margin:0 auto 8px; border-radius:10px; }
+.online-video { min-height:150px; display:grid; align-content:center; text-align:center; }
+.online-video p { margin:0; }
+.online-video video, .online-video audio { display:block; width:100%; max-width:640px; margin:12px auto 0; border-radius:10px; }
+.online-media-item + .online-media-item { margin-top:20px; }
+.online-contact label { display:block; font-weight:600; margin:12px 0; }
+.online-contact input, .online-contact textarea { display:block; width:100%; box-sizing:border-box; border:1px solid #809b87; border-radius:8px; padding:10px; margin-top:4px; font:inherit; }
+.online-contact textarea { resize:vertical; }
+@media(max-width:650px) {
+  #tab-online { grid-column:1 / -1; }
+}
 </style>
 <!-- GoatCounter Skript -->
 <script async="" data-goatcounter="https://handstand-dortmund.goatcounter.com/count" data-goatcounter-settings='{"no_onload": true}' src="//gc.zgo.at/count.js"></script>
@@ -454,7 +474,7 @@ body { display:block; padding:28px 16px; }
 .phone-copy-button:hover { background:#e5f1e9; }
 .phone-copy-button:focus-visible {outline:3px solid #dc9d44;outline-offset:2px;}
 </style></head>
-<body><main class="site-shell"><header class="site-header"><div class="slogan">Lilia Michailov Movement · Dortmund</div><h1>Handstandkurse &amp; Personal Coaching</h1><p>Deine Hände können mehr als nur tippen.</p></header><nav aria-label="Seitenbereiche" class="tabs" role="tablist"><button aria-controls="panel-kurse" aria-selected="true" class="tab-button active" id="tab-kurse" role="tab" tabindex="0" type="button">Aktuelle Kurse</button><button aria-controls="panel-coaching" aria-selected="false" class="tab-button" id="tab-coaching" role="tab" tabindex="-1" type="button">Personal Coaching</button><button aria-controls="panel-rezensionen" aria-selected="false" class="tab-button" id="tab-rezensionen" role="tab" tabindex="-1" type="button">Rezensionen</button><button aria-controls="panel-kontakt" aria-selected="false" class="tab-button" id="tab-kontakt" role="tab" tabindex="-1" type="button">Kontakt</button></nav><div class="tabs-content"><div aria-labelledby="tab-kurse" class="tab-panel active" id="panel-kurse" role="tabpanel" tabindex="0">
+<body><main class="site-shell"><header class="site-header"><div class="slogan">Lilia Michailov Movement · Dortmund</div><h1>Handstandkurse &amp; Personal Coaching</h1><p>Deine Hände können mehr als nur tippen.</p></header><nav aria-label="Seitenbereiche" class="tabs" role="tablist"><button aria-controls="panel-kurse" aria-selected="true" class="tab-button active" id="tab-kurse" role="tab" tabindex="0" type="button">Aktuelle Kurse</button><button aria-controls="panel-coaching" aria-selected="false" class="tab-button" id="tab-coaching" role="tab" tabindex="-1" type="button">Personal Coaching</button><button aria-controls="panel-rezensionen" aria-selected="false" class="tab-button" id="tab-rezensionen" role="tab" tabindex="-1" type="button">Rezensionen</button><button aria-controls="panel-kontakt" aria-selected="false" class="tab-button" id="tab-kontakt" role="tab" tabindex="-1" type="button">Kontakt</button><button aria-controls="panel-online" aria-selected="false" class="tab-button" id="tab-online" role="tab" tabindex="-1" type="button">Online-Coaching</button></nav><div class="tabs-content"><div aria-labelledby="tab-kurse" class="tab-panel active" id="panel-kurse" role="tabpanel" tabindex="0">
 <!-- ANSICHT 1: HAUPTSEITE -->
 <div class="view-section active" id="view-main">
 <div class="slogan">Deine Hände können mehr als nur tippen</div>
@@ -575,7 +595,67 @@ Individuelles Handstandtraining ohne Leistungsdruck
 <p class="small-note">Bei E-Mail und WhatsApp öffnet sich die jeweilige App mit einer vorbereiteten Nachricht. Bitte selbst auf „Senden“ tippen. Instagram öffnet mein Profil; dort kannst du mir eine Direktnachricht schreiben. Mobiles Training nach Absprache, gegebenenfalls mit Anfahrtskosten.</p>
 </section><div class="coaching-visual"><video autoplay="" class="video-container" loop="" muted="" playsinline="" src="video_barren.mp4"></video></div></aside><section aria-labelledby="tab-rezensionen" class="tab-panel" id="panel-rezensionen" role="tabpanel" tabindex="0"><div class="slogan">Deine Erfahrungen zählen</div><h1>Google-Rezensionen</h1><p>Du warst bei meinem Handstandkurs oder Personal Coaching dabei? Ich freue mich über eine ehrliche öffentliche Google-Bewertung. So können auch andere mein Handstandtraining in Dortmund entdecken.</p><a class="btn btn-feedback" href="https://g.page/r/Cf62R8plx75QEBI/review" id="btn-google-review" rel="noopener noreferrer" target="_blank">⭐ Öffentliche Google-Rezension schreiben
              <span>Deine Bewertung erscheint auf meinem Google-Unternehmensprofil</span>
-</a><p class="feedback-note">Deine Bewertung ist freiwillig und wird, sofern Google sie freigibt, öffentlich auf meinem Google-Unternehmensprofil angezeigt.</p><a class="btn btn-flyer" href="https://share.google/iEvBsJ3BdTYYFrSab" id="btn-google-profil" rel="noopener noreferrer" target="_blank">⭐ Vorhandene Bewertungen bei Google ansehen</a></section><section aria-labelledby="tab-kontakt" class="tab-panel" id="panel-kontakt" role="tabpanel" tabindex="0"><div class="slogan">Schreib mir einfach</div><h1>Kontakt</h1><p>Du hast Fragen zu einem Handstandkurs, möchtest Personal Coaching vereinbaren oder einen mobilen Termin in Dortmund anfragen? Ich freue mich, von dir zu hören.</p><div class="contact-actions"><a class="btn btn-secondary" href="tel:+4915561566419" id="btn-contact-call">📞 01556 1566419 anrufen</a><div class="phone-copy-row"><span class="phone-number">01556 1566419</span><button aria-label="Telefonnummer in die Zwischenablage kopieren" class="phone-copy-button" data-copy-phone="01556 1566419" type="button">📋 Nummer kopieren</button></div><a class="btn btn-whatsapp" href="https://wa.me/4915561566419?text=Hallo%20Lilia%2C%20ich%20habe%20eine%20Frage%20zum%20Handstandtraining." id="btn-contact-whatsapp" rel="noopener noreferrer" target="_blank">💬 Per WhatsApp schreiben</a><a class="btn btn-flyer" href="mailto:lilia.handstand@outlook.de?subject=Anfrage%20Handstandtraining" id="btn-contact-email">✉️ lilia.handstand@outlook.de</a></div><h2>Instagram</h2><p>Weitere Einblicke in meine Kurse und mein Training:</p><a class="btn btn-insta" href="https://instagram.com/lilia.milo" id="btn-insta-neu" target="_blank">📸 @lilia.milo auf Instagram</a><div class="other-service"><h2>Auch IT-Support in Dortmund</h2><p>Neben meinen Handstandangeboten unterstütze ich bei PC, Outlook und anderen Technikfragen.</p><a href="https://lmichailov.github.io/it-support/" id="btn-it-support" rel="noopener noreferrer" target="_blank">Mehr über meinen IT-Support erfahren ↗</a></div></section></div></main>
+</a><p class="feedback-note">Deine Bewertung ist freiwillig und wird, sofern Google sie freigibt, öffentlich auf meinem Google-Unternehmensprofil angezeigt.</p><a class="btn btn-flyer" href="https://share.google/iEvBsJ3BdTYYFrSab" id="btn-google-profil" rel="noopener noreferrer" target="_blank">⭐ Vorhandene Bewertungen bei Google ansehen</a></section><section aria-labelledby="tab-kontakt" class="tab-panel" id="panel-kontakt" role="tabpanel" tabindex="0"><div class="slogan">Schreib mir einfach</div><h1>Kontakt</h1><p>Du hast Fragen zu einem Handstandkurs, möchtest Personal Coaching vereinbaren oder einen mobilen Termin in Dortmund anfragen? Ich freue mich, von dir zu hören.</p><div class="contact-actions"><a class="btn btn-secondary" href="tel:+4915561566419" id="btn-contact-call">📞 01556 1566419 anrufen</a><div class="phone-copy-row"><span class="phone-number">01556 1566419</span><button aria-label="Telefonnummer in die Zwischenablage kopieren" class="phone-copy-button" data-copy-phone="01556 1566419" type="button">📋 Nummer kopieren</button></div><a class="btn btn-whatsapp" href="https://wa.me/4915561566419?text=Hallo%20Lilia%2C%20ich%20habe%20eine%20Frage%20zum%20Handstandtraining." id="btn-contact-whatsapp" rel="noopener noreferrer" target="_blank">💬 Per WhatsApp schreiben</a><a class="btn btn-flyer" href="mailto:lilia.handstand@outlook.de?subject=Anfrage%20Handstandtraining" id="btn-contact-email">✉️ lilia.handstand@outlook.de</a></div><h2>Instagram</h2><p>Weitere Einblicke in meine Kurse und mein Training:</p><a class="btn btn-insta" href="https://instagram.com/lilia.milo" id="btn-insta-neu" target="_blank">📸 @lilia.milo auf Instagram</a><div class="other-service"><h2>Auch IT-Support in Dortmund</h2><p>Neben meinen Handstandangeboten unterstütze ich bei PC, Outlook und anderen Technikfragen.</p><a href="https://lmichailov.github.io/it-support/" id="btn-it-support" rel="noopener noreferrer" target="_blank">Mehr über meinen IT-Support erfahren ↗</a></div></section>
+<section aria-labelledby="tab-online" class="tab-panel" id="panel-online" role="tabpanel" tabindex="0">
+  <h1>Dein Handstand. Dein Trainingsplan.</h1>
+  <p class="online-subtitle">5 Wochen individuelles Online-Handstand-Coaching mit Lilia Michailov.</p>
+  <div class="online-offer">
+    <h2>Interesse an der Handstand-App?</h2>
+    <p>Ruf mich gerne an, wenn du Fragen zur App oder zum Online-Coaching hast.</p>
+    <a class="btn btn-secondary" href="#panel-kontakt" data-online-contact>Zum Kontakt</a>
+  </div>
+
+  <h2>Warum individuelles Coaching?</h2>
+  <p>Jeder bringt andere Voraussetzungen mit. Vielleicht fehlt dir noch Schulterkraft, Beweglichkeit, Compression oder die richtige Balance. Vielleicht trainierst du schon länger, kommst aber nicht weiter.</p>
+  <p>Deshalb bekommst du bei mir keinen Standard-Trainingsplan.</p>
+  <p>Im persönlichen Onboarding analysiere ich anhand des Fähigkeitschecks und deiner Trainingsvideos deine Stärken, Schwächen und Trainingsmöglichkeiten. Gemeinsam legen wir ein realistisches Trainingsziel fest. Daraus entsteht dein persönlicher Trainingsplan für fünf Wochen. Ich betreue dich über meine Handstand-App.</p>
+  <ul class="online-benefits">
+    <li>Individuelle Analyse anhand von Videos und Fähigkeitscheck</li>
+    <li>Persönliche Trainingsziele statt Standardübungen</li>
+    <li>Trainingsplan passend zu deiner Zeit und deinen Voraussetzungen</li>
+    <li>Verständliche Technikerklärungen</li>
+    <li>Wöchentliches persönliches Video-Feedback zu einem kurzen Clip</li>
+    <li>Anpassung des Trainingsplans an deine Fortschritte</li>
+  </ul>
+  <figure class="online-asset">
+    <img src="online-bewertungsrad.png" width="820" height="650" alt="Unausgefülltes Bewertungsrad von 1 bis 10 für Kraft und Stabilität, Compression, Balance und Körpergefühl, Beweglichkeit, Technik und Koordination sowie Spaß und Geduld." loading="lazy">
+    <figcaption>Bewertungsrad aus dem persönlichen Onboarding</figcaption>
+  </figure>
+  <h2>Aktives Schulterdrücken – Woche 1</h2>
+  <a class="btn btn-flyer" href="aktives-schulterdruecken-woche-1.pdf">Technikposter als PDF öffnen</a>
+
+  <div class="online-video">
+    <div class="online-media-item">
+      <h2>Einblick in die Handstand-App</h2>
+      <p>Klickdemo · Entwurf</p>
+      <video src="Handstand-Coach-Klickdemo.mp4" controls playsinline preload="none" aria-label="Klickdemo der Handstand-App"></video>
+    </div>
+    <div class="online-media-item">
+      <h2>Online-Coaching im Kurzvideo</h2>
+      <p>TikTok-Clip · Entwurf</p>
+      <video src="TikTok_Handstand_Coaching_Ton_v2.mp4" controls playsinline preload="none" aria-label="TikTok-Clip zum Online-Coaching"></video>
+    </div>
+    <div class="online-media-item">
+      <h2>Hörprobe zum Handstand-Coaching</h2>
+      <audio src="Handstand_Stimme_optimiert_v2.m4a" controls preload="none" aria-label="Hörprobe zum Handstand-Coaching"></audio>
+    </div>
+  </div>
+
+  <div class="online-contact" id="online-kontakt" tabindex="-1">
+    <h2>Deine Frage zum Online-Coaching</h2>
+    <p>Das Formular öffnet einen Entwurf in deinem E-Mail-Programm. Alternativ erreichst du mich direkt unter <a href="mailto:lilia.handstand@outlook.de">lilia.handstand@outlook.de</a>.</p>
+    <form id="online-kontaktformular">
+      <label>Name <input name="name" autocomplete="name" maxlength="100" required></label>
+      <label>E-Mail <input type="email" name="email" autocomplete="email" maxlength="254" required></label>
+      <label>Nachricht <textarea name="message" rows="4" maxlength="1500" required></textarea></label>
+      <button class="btn btn-secondary" type="submit" disabled>E-Mail-Entwurf öffnen</button>
+    </form>
+  </div>
+  <div class="online-offer">
+    <a class="btn btn-secondary" href="#panel-kontakt" data-online-contact>Zum Kontakt</a>
+  </div>
+</section>
+</div></main>
 <script>
     // Ein zentraler Listener verhindert doppelte Meldungen pro Klick.
     const clickLabels = {
@@ -660,6 +740,15 @@ Individuelles Handstandtraining ohne Leistungsdruck
    panels.forEach(p=>p.classList.toggle('active',p.id===tab.getAttribute('aria-controls')));
    if(focus)tab.focus();
  }
+ const linkedTab=tabs.find(tab=>'#'+tab.getAttribute('aria-controls')===location.hash);
+ if(linkedTab) selectTab(linkedTab,false);
+ document.querySelectorAll('[data-online-contact]').forEach(link=>{
+   link.addEventListener('click',event=>{
+     event.preventDefault();
+     selectTab(document.querySelector('#tab-kontakt'),false);
+     document.querySelector('#btn-contact-call').focus();
+   });
+ });
  tabs.forEach((tab,i)=>{
    tab.addEventListener('click',()=>selectTab(tab,false));
    tab.addEventListener('keydown',e=>{
@@ -706,5 +795,20 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 });
-</script></body>
+</script><script>
+  const onlineContactForm = document.querySelector('#online-kontaktformular');
+  onlineContactForm.addEventListener('submit', (event) => {
+    event.preventDefault();
+    const fields = new FormData(onlineContactForm);
+    const subject = encodeURIComponent('Frage zum Online-Coaching');
+    const body = encodeURIComponent(
+      'Name: ' + fields.get('name') + '\r\n' +
+      'E-Mail: ' + fields.get('email') + '\r\n\r\n' +
+      fields.get('message').replace(/\r?\n/g, '\r\n')
+    );
+    window.location.href = 'mailto:lilia.handstand@outlook.de?subject=' + subject + '&body=' + body;
+  });
+  onlineContactForm.querySelector('[type=submit]').disabled = false;
+</script>
+</body>
 </html>
